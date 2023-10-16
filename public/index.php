@@ -8,14 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&display=swap" rel="stylesheet"> 
-<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="../assets/css/index.css">
 
 </head>
 <body>
 
 <video autoplay muted loop>
     <!-- Reemplaza 'video.mp4' con la ruta de tu video -->
-    <source src="movie.mp4" type="video/mp4">
+    <source src="../assets/img/movie.mp4" type="video/mp4">
     Tu navegador no soporta el elemento de video.
 </video>
 <h1>Carrot Flix</h1>
@@ -35,7 +35,7 @@
             </form>
             <div class="pie-form">
                 <a href="#">¿Perdiste tu contraseña?</a>
-                <a href="registro.html">¿No tienes Cuenta? Registrate</a>
+                <a href="../views/register/registro.php">¿No tienes Cuenta? Registrate</a>
             </div>
         </div>
         <div class="inferior">
