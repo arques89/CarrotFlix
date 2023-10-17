@@ -9,7 +9,7 @@ use Controllers\LoginController;
 $router = new Router();
 
 // Iniciar sesión
-$router->get('/', [LoginController::class, 'login']);
+$router->get('/login', [LoginController::class, 'login']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
