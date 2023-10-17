@@ -4,6 +4,7 @@ namespace Model;
 
 class ActiveRecord
 {
+    protected $id;
 
     // Base DE DATOS
     protected static $db;
