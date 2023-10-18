@@ -3,14 +3,17 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use MVC\Router;
-use Controllers\LoginController;
+use Controllers\AuthController;
 use Controllers\PaginasController;
 
 
 $router = new Router();
 
 // Iniciar sesión
-$router->get('/login', [LoginController::class, 'login']);
+$router->get('/login', [AuthController::class, 'login']);
+
+// Registro
+$router->get('/register', [AuthController::class, 'register']);
 
 // Página 404
 $router->get('/404', [PaginasController::class, 'error']);
