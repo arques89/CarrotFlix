@@ -40,6 +40,9 @@
                 <input type="text" name="dni" id="dni">
             </div>
             <button type="submit">Registrar</button>
+            <div class="inferior">
+            <a href="/login">Volver</a>
+        </div>
         </form>
     </div>
 </body>

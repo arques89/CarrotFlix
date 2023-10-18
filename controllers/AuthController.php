@@ -26,4 +26,15 @@ class AuthController
             'alertas' => $alertas
         ]);
     }
+
+    public static function recuperar(Router $router)
+    {
+        $alertas = [];
+
+        // Render a la vista
+        $router->render('auth/recuperar', [
+            'titulo' => '¿Olvidaste tu contraseña?',
+            'alertas' => $alertas
+        ]);
+    }
 }

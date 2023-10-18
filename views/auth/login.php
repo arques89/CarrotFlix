@@ -34,12 +34,12 @@
                 <button type="submit" title="Ingresar" name="Ingresar">Login</button>
             </form>
             <div class="pie-form">
-                <a href="#">¿Perdiste tu contraseña?</a>
+                <a href="/recuperar">¿Perdiste tu contraseña?</a>
                 <a href="/register">¿No tienes Cuenta? Registrate</a>
             </div>
         </div>
         <div class="inferior">
-            <a href="#">Volver</a>
+            <a href="/">Volver</a>
         </div>
     </div>
 </div>

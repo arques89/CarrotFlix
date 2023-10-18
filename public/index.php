@@ -18,6 +18,9 @@ $router->get('/login', [AuthController::class, 'login']);
 // Registro
 $router->get('/register', [AuthController::class, 'register']);
 
+// Recuperar
+$router->get('/recuperar', [AuthController::class, 'recuperar']);
+
 // Página 404
 $router->get('/404', [PaginasController::class, 'error']);
 
