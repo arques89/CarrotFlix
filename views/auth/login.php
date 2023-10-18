@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../assets/css/index.css">
-    <style>
+    <title>Video a Pantalla Completa</title>
 
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="/assets/css/index.css">
+
 </head>
-
 <body>
-    <video autoplay muted loop>
-        <source src="../../assets/img/movie.mp4" type="video/mp4">
-        Tu navegador no soporta el elemento de video.
-    </video>
-    <div class="registro">
-        <h1>Registro</h1>
 
-        <form action="/registrar" method="post">
-            <div class="campo">
-                <label for="correo">Correo electrónico:</label>
-                <input type="email" name="correo" id="correo">
+<video autoplay muted loop>
+    <!-- Reemplaza 'video.mp4' con la ruta de tu video -->
+    <source src="../assets/img/movie.mp4" type="video/mp4">
+    Tu navegador no soporta el elemento de video.
+</video>
+<h1>Carrot Flix</h1>
+
+<div id="contenedor">
+    <div id="central">
+        <div id="login">
+            <div class="titulo">
+                Bienvenido
             </div>
-            <div class="campo">
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre">
+            <form id="loginform">
+                <input type="text" name="usuario" placeholder="Usuario" required>
+                
+                <input type="password" placeholder="Contraseña" name="password" required>
+                
+                <button type="submit" title="Ingresar" name="Ingresar">Login</button>
+            </form>
+            <div class="pie-form">
+                <a href="#">¿Perdiste tu contraseña?</a>
+                <a href="/register">¿No tienes Cuenta? Registrate</a>
             </div>
-            <div class="campo">
-                <label for="apellido">Apellido:</label>
-                <input type="text" name="apellido" id="apellido">
-            </div>
-            <div class="campo">
-                <label for="edad">Edad:</label>
-                <input type="number" name="edad" id="edad">
-            </div>
-            <div class="campo">
-                <label for="dni">DNI:</label>
-                <input type="text" name="dni" id="dni">
-            </div>
-            <button type="submit">Registrar</button>
-        </form>
+        </div>
+        <div class="inferior">
+            <a href="#">Volver</a>
+        </div>
     </div>
-</body>
+</div>
 
+</body>
 </html>
