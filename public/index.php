@@ -9,6 +9,9 @@ use Controllers\PaginasController;
 
 $router = new Router();
 
+// Area pública
+$router->get('/', [PaginasController::class, 'index']);
+
 // Iniciar sesión
 $router->get('/login', [AuthController::class, 'login']);
 
