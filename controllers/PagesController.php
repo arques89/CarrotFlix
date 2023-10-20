@@ -4,13 +4,13 @@ namespace Controllers;
 
 use MVC\Router;
 
-class PaginasController
+class PagesController
 {
 
     public static function index(Router $router)
     {
 
-        $router->render('paginas/index', [
+        $router->render('pages/index', [
             'titulo' => 'Inicio',
         ]);
     }
@@ -18,7 +18,7 @@ class PaginasController
     public static function error(Router $router)
     {
 
-        $router->render('paginas/error404', [
+        $router->render('pages/error404', [
             'titulo' => 'ERROR 404: Página no encontrada'
         ]);
     }

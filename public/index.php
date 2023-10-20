@@ -4,13 +4,13 @@ require_once __DIR__ . '/../includes/app.php';
 
 use MVC\Router;
 use Controllers\AuthController;
-use Controllers\PaginasController;
+use Controllers\PagesController;
 
 
 $router = new Router();
 
 // Area pública
-$router->get('/', [PaginasController::class, 'index']);
+$router->get('/', [PagesController::class, 'index']);
 
 // Iniciar sesión
 $router->get('/login', [AuthController::class, 'login']);
@@ -22,7 +22,7 @@ $router->get('/register', [AuthController::class, 'register']);
 $router->get('/recuperar', [AuthController::class, 'recuperar']);
 
 // Página 404
-$router->get('/404', [PaginasController::class, 'error']);
+$router->get('/404', [PagesController::class, 'error']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
