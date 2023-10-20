@@ -13,7 +13,11 @@
     <div class="contenedor-app">
         <div class="imagen"></div>
         <div class="app">
-            <?php echo $contenido; ?>
+            <?php
+            include_once __DIR__ . '/templates/header.php';
+            echo $contenido;
+            include_once __DIR__ . '/templates/footer.php';
+            ?>
         </div>
     </div>
 
