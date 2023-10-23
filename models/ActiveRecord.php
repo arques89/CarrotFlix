@@ -8,7 +8,7 @@ class ActiveRecord
 
     // Base DE DATOS
     protected static $db;
-    protected static $tabla = '';
+    protected static $table = '';
     protected static $columnasDB = [];
 
     // Alertas y Mensajes
@@ -119,7 +119,7 @@ class ActiveRecord
     // Todos los registros
     public static function all()
     {
-        $query = "SELECT * FROM " . static::$tabla;
+        $query = "SELECT * FROM " . static::$table;
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
@@ -127,14 +127,14 @@ class ActiveRecord
     // Busca un registro por su id
     public static function find($id)
     {
-        $query = "SELECT * FROM " . static::$tabla  . " WHERE id = ${id}";
+        $query = "SELECT * FROM " . static::$table  . " WHERE id = ${id}";
         $resultado = self::consultarSQL($query);
         return array_shift($resultado);
     }
 
     public static function where($columna, $valor)
     {
-        $query = "SELECT * FROM " . static::$tabla  . " WHERE {$columna} = '${valor}'";
+        $query = "SELECT * FROM " . static::$table  . " WHERE {$columna} = '${valor}'";
         $resultado = self::consultarSQL($query);
         return array_shift($resultado); // array_shift devuelve el primer elemento de un array
     }
@@ -149,7 +149,7 @@ class ActiveRecord
     // Obtener Registros con cierta cantidad
     public static function get($limite)
     {
-        $query = "SELECT * FROM " . static::$tabla . " LIMIT ${limite}";
+        $query = "SELECT * FROM " . static::$table . " LIMIT ${limite}";
         $resultado = self::consultarSQL($query);
         return array_shift($resultado);
     }
@@ -161,7 +161,7 @@ class ActiveRecord
         $atributos = $this->sanitizarAtributos();
 
         // Insertar en la base de datos
-        $query = " INSERT INTO " . static::$tabla . " ( ";
+        $query = " INSERT INTO " . static::$table . " ( ";
         $query .= join(', ', array_keys($atributos));
         $query .= " ) VALUES (' ";
         $query .= join("', '", array_values($atributos));
@@ -190,7 +190,7 @@ class ActiveRecord
         }
 
         // Consulta SQL
-        $query = "UPDATE " . static::$tabla . " SET ";
+        $query = "UPDATE " . static::$table . " SET ";
         $query .=  join(', ', $valores);
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 ";
@@ -203,7 +203,7 @@ class ActiveRecord
     // Eliminar un Registro por su ID
     public function eliminar()
     {
-        $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+        $query = "DELETE FROM "  . static::$table . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
         $resultado = self::$db->query($query);
         return $resultado;
     }
