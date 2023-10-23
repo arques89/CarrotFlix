@@ -11,12 +11,18 @@
                 <div class="titulo">
                     Bienvenido
                 </div>
-                <form method="POST" action="/login" id="loginform">
-                    <input type="text" name="usuario" placeholder="Usuario" required>
+                <form method="POST" action="/login" class="formulario">
+                    <div class="formulario__campo">
+                        <label for="email" class="formulario__label">Email</label>
+                        <input type="email" class="formulario__input" placeholder="Su email" id="email" name="email">
+                    </div>
 
-                    <input type="password" placeholder="Contraseña" name="password" required>
+                    <div class="formulario__campo">
+                        <label for="password" class="formulario__label">Password</label>
+                        <input type="password" class="formulario__input" placeholder="Su password" id="password" name="password">
+                    </div>
 
-                    <input type="submit" class="formulario__submit" value="Login" />
+                    <input type="submit" class="formulario__submit" value="Iniciar sesión" />
                 </form>
                 <div class="pie-form">
                     <a href="/recuperar">¿Perdiste tu contraseña?</a>
