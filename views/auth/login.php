@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video a Pantalla Completa</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/index.css">
-
-</head>
-
-<body>
-
+<main>
     <video autoplay muted loop>
         <!-- Reemplaza 'video.mp4' con la ruta de tu video -->
         <source src="../assets/img/movie.mp4" type="video/mp4">
@@ -27,12 +11,12 @@
                 <div class="titulo">
                     Bienvenido
                 </div>
-                <form id="loginform">
+                <form method="POST" action="/login" id="loginform">
                     <input type="text" name="usuario" placeholder="Usuario" required>
 
                     <input type="password" placeholder="Contraseña" name="password" required>
 
-                    <button type="submit" title="Ingresar" name="Ingresar">Login</button>
+                    <input type="submit" class="formulario__submit" value="Login" />
                 </form>
                 <div class="pie-form">
                     <a href="/recuperar">¿Perdiste tu contraseña?</a>
@@ -44,7 +28,4 @@
             </div>
         </div>
     </div>
-
-</body>
-
-</html>
+</main>
