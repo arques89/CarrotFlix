@@ -6,7 +6,7 @@
             </h3>
 
             <p class="footer__texto">
-                Carrot Flix es una herramienta para empresas aseguradoras.
+                Carrot Flix tu servicio de streaming
             </p>
         </div>
 

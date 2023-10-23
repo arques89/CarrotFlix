@@ -11,6 +11,12 @@
     </style>
 </head>
 
+<video autoplay muted loop>
+    <!-- Reemplaza 'video.mp4' con la ruta de tu video -->
+    <source src="../assets/img/movie.mp4" type="video/mp4">
+    Tu navegador no soporta el elemento de video.
+</video>
+
 <div class="registro">
     <form action="/registrar" method="post">
         <div class="campo">
