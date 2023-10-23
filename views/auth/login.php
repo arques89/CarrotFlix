@@ -13,13 +13,13 @@
                 </div>
                 <form method="POST" action="/login" class="formulario">
                     <div class="formulario__campo">
-                        <label for="email" class="formulario__label">Email</label>
-                        <input type="email" class="formulario__input" placeholder="Su email" id="email" name="email">
+                        <label for="email" class="formulario__label">Correo Electrónico</label>
+                        <input type="email" class="formulario__input" placeholder="Correo Electrónico" id="email" name="email">
                     </div>
 
                     <div class="formulario__campo">
-                        <label for="password" class="formulario__label">Password</label>
-                        <input type="password" class="formulario__input" placeholder="Su password" id="password" name="password">
+                        <label for="password" class="formulario__label">Contraseña</label>
+                        <input type="password" class="formulario__input" placeholder="Contraseña" id="password" name="password">
                     </div>
 
                     <input type="submit" class="formulario__submit" value="Iniciar sesión" />
