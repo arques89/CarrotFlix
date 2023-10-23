@@ -1,8 +1,4 @@
 <header class="header">
-    <video autoplay muted loop>
-        <source src="../../assets/img/movie.mp4" type="video/mp4">
-        Tu navegador no soporta el elemento de video.
-    </video>
     <div class="header__contenedor">
         <nav class="header__navegacion">
             <a href="/login" class="header__enlace">Iniciar sesión</a>
