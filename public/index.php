@@ -14,6 +14,7 @@ $router->get('/', [PagesController::class, 'index']);
 
 // Iniciar sesión
 $router->get('/login', [AuthController::class, 'login']);
+$router->post('/login', [AuthController::class, 'login']);
 
 // Registro
 $router->get('/register', [AuthController::class, 'register']);
