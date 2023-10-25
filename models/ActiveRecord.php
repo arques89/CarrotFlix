@@ -103,7 +103,7 @@ class ActiveRecord
     }
 
     // Registros - CRUD
-    public function guardar()
+    public function save()
     {
         $resultado = '';
         if (!is_null($this->id)) {

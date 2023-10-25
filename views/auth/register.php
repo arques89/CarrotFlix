@@ -8,34 +8,40 @@
     <div id="contenedor_registro">
         <div id="central">
             <div id="registro">
+                <?php
+                require_once __DIR__ . '../../templates/alertas.php';
+                ?>
                 <div class="titulo">
                     Registro
                 </div>
-                <form method="POST" action="/login" id="loginform">
-                    <div class="campo">
-                        <label for="correo">Correo electrónico:</label>
-                        <input type="email" name="correo" id="correo" placeholder="Correo Electronico">
+
+                <form method="POST" action="/register" class="formulario">
+                    <div class="formulario__campo">
+                        <label for="name" class="formulario__label">Nombre</label>
+                        <input type="text" class="formulario__input" placeholder="Su nombre" id="name" name="name" value="<?php echo $user->name ?>">
                     </div>
 
-                    <div class="campo">
-                        <label for="nombre">Contraseña:</label>
-                        <input type="password" placeholder="Contraseña" name="password" required>
+                    <div class="formulario__campo">
+                        <label for="surname" class="formulario__label">Apellido</label>
+                        <input type="text" class="formulario__input" placeholder="Su apellido" id="surname" name="surname" value="<?php echo $user->surname ?>">
                     </div>
 
-                    <div class="campo">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                    <div class="formulario__campo">
+                        <label for="email" class="formulario__label">Email</label>
+                        <input type="email" class="formulario__input" placeholder="Su email" id="email" name="email" value="<?php echo $user->email ?>">
                     </div>
-                    <div class="campo">
-                        <label for="edad">Apellido</label>
-                        <input type="number" name="edad" id="edad" placeholder="Edad">
+
+                    <div class="formulario__campo">
+                        <label for="password" class="formulario__label">Password</label>
+                        <input type="password" class="formulario__input" placeholder="Su password" id="password" name="password">
                     </div>
-                    <div class="campo">
-                        <label for="dni">Edad:</label>
-                        <input type="text" name="dni" id="dni" placeholder="Dni">
+
+                    <div class="formulario__campo">
+                        <label for="password2" class="formulario__label">Repetir Password</label>
+                        <input type="password" class="formulario__input" placeholder="Repetir su password" id="password2" name="password2">
                     </div>
-                    <br>
-                    <input type="submit" class="formulario__submit" value="Registrarse" />
+
+                    <input type="submit" class="formulario__submit" value="Crear cuenta" />
                 </form>
                 <div class="pie-form">
                     <a href="/recuperar">¿Perdiste tu contraseña?</a>
