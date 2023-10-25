@@ -9,11 +9,40 @@ class AuthController
 {
     public static function login(Router $router)
     {
-        $alertas = [];
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            /* debuguear($_POST); */
+
+            $user = new User($_POST);
+
+            $alertas = $user->validateLogin();
+
+            if (empty($alertas)) {
+                // Verificar quel el usuario exista
+                $user = User::where('email', $user->email);
+                if (!$user || !$user->confirmed) {
+                    User::setAlert('error', 'El usuario ' . $user->email . ' no existe o no esta confirmado');
+                } else {
+                    // El Usuario existe
+                    if (password_verify($_POST['password'], $user->password)) {
+
+                        // Iniciar la sesión
+                        session_start();
+                        $_SESSION['id'] = $user->id;
+                        $_SESSION['name'] = $user->name;
+                        $_SESSION['surname'] = $user->surname;
+                        $_SESSION['email'] = $user->email;
+                        $_SESSION['admin'] = $user->admin ?? null;
+
+                        // Redirección
+                        if ($user) {
+                            header('Location: /');
+                        }
+                    } else {
+                        User::setAlert('error', 'Contraseña incorrecta');
+                    }
+                }
+            }
         }
+        $alertas = User::getAlerts();
 
         // Render a la vista
         $router->render('auth/login', [
@@ -53,7 +82,7 @@ class AuthController
                     $resultado = $user->save();
 
                     // Enviar email
-                    /*  $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
+                    /*  $email = new Email($user->email, $user->nombre, $user->token);
                     $email->enviarConfirmacion(); */
 
                     if ($resultado) {
