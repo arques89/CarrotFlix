@@ -127,14 +127,14 @@ class ActiveRecord
     // Busca un registro por su id
     public static function find($id)
     {
-        $query = "SELECT * FROM " . static::$table  . " WHERE id = ${id}";
+        $query = "SELECT * FROM " . static::$table  . " WHERE id = {$id}";
         $resultado = self::consultSQL($query);
         return array_shift($resultado);
     }
 
     public static function where($columna, $valor)
     {
-        $query = "SELECT * FROM " . static::$table  . " WHERE {$columna} = '${valor}'";
+        $query = "SELECT * FROM " . static::$table  . " WHERE {$columna} = '{$valor}'";
         $resultado = self::consultSQL($query);
         return array_shift($resultado); // array_shift devuelve el primer elemento de un array
     }
@@ -149,7 +149,7 @@ class ActiveRecord
     // Obtener Registros con cierta cantidad
     public static function get($limite)
     {
-        $query = "SELECT * FROM " . static::$table . " LIMIT ${limite}";
+        $query = "SELECT * FROM " . static::$table . " LIMIT {$limite}";
         $resultado = self::consultSQL($query);
         return array_shift($resultado);
     }
