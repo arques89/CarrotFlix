@@ -12,9 +12,10 @@ $router = new Router();
 // Area pública
 $router->get('/', [PagesController::class, 'index']);
 
-// Iniciar sesión
+// Iniciar / Cerrar sesión
 $router->get('/login', [AuthController::class, 'login']);
 $router->post('/login', [AuthController::class, 'login']);
+$router->post('/logout', [AuthController::class, 'logout']);
 
 // Registro
 $router->get('/register', [AuthController::class, 'register']);
