@@ -31,7 +31,7 @@ class User extends ActiveRecord
         $this->admin = $args['admin'] ?? 0;
     }
 
-    // Validar el Login de Usuarios
+    // validate el Login de Usuarios
     public function validateLogin()
     {
         if (!$this->email) {

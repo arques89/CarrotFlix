@@ -29,7 +29,7 @@ class AuthController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $user->sincronizar($_POST);
+            $user->synchronizeDB($_POST);
 
             $alertas = $user->validateAccount();
 
@@ -37,8 +37,8 @@ class AuthController
                 $existeUsuario = User::where('email', $user->email);
 
                 if ($existeUsuario) {
-                    User::setAlerta('error', 'El Usuario ya esta registrado');
-                    $alertas = User::getAlertas();
+                    User::setAlert('error', 'El Usuario ya esta registrado');
+                    $alertas = User::getAlerts();
                 } else {
                     // Hashear el password
                     $user->hashPassword();
