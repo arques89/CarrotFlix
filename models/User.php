@@ -50,16 +50,16 @@ class User extends ActiveRecord
     public function validateAccount()
     {
         if (!$this->name) {
-            self::$alertas['error'][] = 'El nombre es Obligatorio';
+            self::$alertas['error'][] = 'El nombre es obligatorio';
         }
         if (!$this->surname) {
-            self::$alertas['error'][] = 'El apellido es Obligatorio';
+            self::$alertas['error'][] = 'El apellido es obligatorio';
         }
         if (!$this->email) {
-            self::$alertas['error'][] = 'El Email es Obligatorio';
+            self::$alertas['error'][] = 'El email es obligatorio';
         }
         if (!$this->password) {
-            self::$alertas['error'][] = 'El Password no puede ir vacio';
+            self::$alertas['error'][] = 'El password no puede ir vacío';
         }
         if (strlen($this->password) < 6) {
             self::$alertas['error'][] = 'El password debe contener al menos 6 caracteres';
@@ -74,7 +74,7 @@ class User extends ActiveRecord
     public function validateEmail()
     {
         if (!$this->email) {
-            self::$alertas['error'][] = 'El Email es Obligatorio';
+            self::$alertas['error'][] = 'El Email es obligatorio';
         }
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             self::$alertas['error'][] = 'Email no válido';
