@@ -1,7 +1,9 @@
 <header class="header">
     <div class="header__contenedor">
         <nav class="header__navegacion">
-            <a href="/login" class="header__enlace">Iniciar sesión</a>
+            <?php if (!isAuth()) { ?>
+                <a href="/login" class="header__enlace">Iniciar sesión</a>
+            <?php } ?>
             <?php if (!empty($_SESSION)) { ?>
                 <form method="POST" action="/logout" class="dashboard__form">
                     <input type="submit" value="Cerrar Sesión" class="dashboard__submit--logout">
@@ -24,7 +26,9 @@
     <div class="barra__contenido">
         <a href="/">
             <h2 class="barra__logo">
-                CarrotFlix
+                <?php if (isAuth()) { ?>
+                    Bienvenido: <span><?php echo $_SESSION['name']; ?></span>
+                <?php } ?>
             </h2>
         </a>
 
