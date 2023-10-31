@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Model\User;
 use MVC\Router;
+use Classes\Email;
 
 class AuthController
 {
@@ -82,8 +83,8 @@ class AuthController
                     $resultado = $user->save();
 
                     // Enviar email
-                    /*  $email = new Email($user->email, $user->nombre, $user->token);
-                    $email->enviarConfirmacion(); */
+                    $email = new Email($user->email, $user->name, $user->token);
+                    $email->sendConfirmation();
 
                     if ($resultado) {
                         header('Location: /message');
