@@ -8,12 +8,14 @@ class Email
 {
     public $email;
     public $name;
+    public $surname;
     public $token;
 
-    public function __construct($email, $name, $token)
+    public function __construct($email, $name, $surname, $token)
     {
         $this->email = $email;
         $this->name = $name;
+        $this->surname = $surname;
         $this->token = $token;
     }
 
@@ -38,7 +40,7 @@ class Email
         $mail->CharSet = 'UTF-8';
 
         $content = '<html>';
-        $content .= "<p><strong>Hola " . $this->name . ",";
+        $content .= "<p><strong>Hola " . $this->name . " " . $this->surname . ",";
         $content .=  "</strong> has registrado correctamente tu cuenta pero es necesario confirmarla.</p>";
         $content .= "<p>Presiona en <a href='" . $_ENV['HOST'] . "/confirmar-cuenta?token=" . $this->token . "'>Confirmar Cuenta</a>";
         $content .= "<p>Si no has creado esta cuenta, puedes ignorar el mensaje.</p>";

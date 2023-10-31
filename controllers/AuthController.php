@@ -83,7 +83,9 @@ class AuthController
                     $resultado = $user->save();
 
                     // Enviar email
-                    $email = new Email($user->email, $user->name, $user->token);
+                    $email = new Email($user->email, $user->name, $user->surname, $user->token);
+
+                    debuguear($email);
                     $email->sendConfirmation();
 
                     if ($resultado) {
