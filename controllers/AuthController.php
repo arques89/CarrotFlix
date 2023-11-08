@@ -23,7 +23,7 @@ class AuthController
                 // Verificar quel el usuario exista
                 $user = User::where('email', $user->email);
                 if (!$user || !$user->confirmed) {
-                    User::setAlert('error', 'El usuario ' . $user->email . ' no existe o no esta confirmado');
+                    User::setAlert('error', 'El usuario no existe o no esta confirmado');
                 } else {
                     // El Usuario existe
                     if (password_verify($_POST['password'], $user->password)) {
