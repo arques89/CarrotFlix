@@ -5,13 +5,17 @@
         Tu navegador no soporta el elemento de video.
     </video>
 
+    <?php
+    require_once __DIR__ . '../../templates/alertas.php';
+    ?>
+
     <div id="contenedor">
         <div id="central">
             <div id="login">
                 <div class="titulo">
                     Recuperar contraseña
                 </div>
-                <form method="POST" action="/login" id="loginform">
+                <form method="POST" action="/recuperar" id="loginform">
                     <div class="campo">
                         <label for="correo">Correo electrónico:</label>
                         <input type="text" name="correo" placeholder="Correo Electronico" required>
@@ -22,9 +26,6 @@
                     <a href="/login">¿Tienes Cuenta? Inicia sesión</a>
                     <a href="/register">¿No tienes Cuenta? Registrate</a>
                 </div>
-            </div>
-            <div class="inferior">
-                <a href="/">Volver</a>
             </div>
         </div>
     </div>

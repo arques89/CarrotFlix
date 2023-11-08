@@ -23,10 +23,11 @@ $router->post('/register', [AuthController::class, 'register']);
 
 // Recuperar
 $router->get('/recuperar', [AuthController::class, 'recuperar']);
+$router->post('/recuperar', [AuthController::class, 'recuperar']);
 
 // Confirmación registro
 $router->get('/message', [AuthController::class, 'message']);
-
+$router->get('/confirm-account', [AuthController::class, 'confirm']);
 // Página 404
 $router->get('/404', [PagesController::class, 'error']);
 

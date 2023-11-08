@@ -123,6 +123,40 @@ class AuthController
     {
         $alertas = [];
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user = new User($_POST);
+            $alertas = $user->validateEmail();
+
+            if (empty($alertas)) {
+                // Buscar el usuario
+                $user = User::where('email', $user->email);
+
+                if ($user && $user->confirmed) {
+
+                    // Generar un nuevo token
+                    $user->createToken();
+                    unset($user->password2);
+
+                    // Actualizar el usuario
+                    $user->save();
+
+                    // Enviar el email
+                    $email = new Email($user->email, $user->name, $user->token);
+                    $email->sendInstructions();
+
+                    // Imprimir la alerta
+                    // User::setAlert('exito', 'Hemos enviado las instrucciones a tu email');
+
+                    $alertas['exito'][] = 'Hemos enviado las instrucciones a tu email';
+                } else {
+
+                    // User::setAlert('error', 'El Usuario no existe o no esta confirmado');
+
+                    $alertas['error'][] = 'El Usuario no existe o no esta confirmado';
+                }
+            }
+        }
+
         // Render a la vista
         $router->render('auth/recuperar', [
             'titulo' => '¿Olvidaste tu contraseña?',
@@ -136,6 +170,39 @@ class AuthController
 
         $router->render('auth/message', [
             'titulo' => 'Cuenta creada satisfactoriamente'
+        ]);
+    }
+
+    public static function confirm(Router $router)
+    {
+
+        $token = s($_GET['token']);
+
+        if (!$token) {
+            header('Location: /');
+        }
+
+        // Encontrar al usuario con este token
+        $user = User::where('token', $token);
+
+        if (empty($user)) {
+            // No se encontró un usuario con ese token
+            User::setAlerta('error', 'Token no válido, su cuenta no ha sido confirmada');
+        } else {
+            // Confirmar la cuenta
+            $user->confirmed = 1;
+            $user->token = '';
+            unset($user->password2);
+
+            // Guardar en la BD
+            $user->save();
+
+            User::setAlert('exito', 'Cuenta confirmada con éxito');
+        }
+
+        $router->render('auth/confirmar', [
+            'titulo' => 'Confirma tu cuenta',
+            'alertas' => User::getAlerts()
         ]);
     }
 }
