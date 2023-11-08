@@ -10,6 +10,9 @@ class AuthController
 {
     public static function login(Router $router)
     {
+
+        $alertas = [];
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $user = new User($_POST);
@@ -37,6 +40,11 @@ class AuthController
                         if ($user) {
                             header('Location: /');
                         }
+                        /* if ($usuario->admin) {
+                    header('Location: /');
+                    } else {
+                    header('Location: /');
+                    } */
                     } else {
                         User::setAlert('error', 'Contraseña incorrecta');
                     }
@@ -52,6 +60,15 @@ class AuthController
         ]);
     }
 
+    public static function logout()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            session_start();
+            $_SESSION = [];
+            header('Location: /');
+        }
+    }
+
     public static function register(Router $router)
     {
         $alertas = [];
@@ -60,7 +77,6 @@ class AuthController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $user->synchronizeDB($_POST);
-
             $alertas = $user->validateAccount();
 
             if (empty($alertas)) {
@@ -85,7 +101,6 @@ class AuthController
                     // Enviar email
                     $email = new Email($user->email, $user->name, $user->surname, $user->token);
 
-                    debuguear($email);
                     $email->sendConfirmation();
 
                     if ($resultado) {
@@ -115,14 +130,6 @@ class AuthController
         ]);
     }
 
-    public static function logout()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            session_start();
-            $_SESSION = [];
-            header('Location: /');
-        }
-    }
 
     public static function message(Router $router)
     {
