@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;

@@ -34,6 +34,7 @@ class ActiveRecord
     public function validate()
     {
         static::$alertas = [];
+
         return static::$alertas;
     }
 
@@ -59,7 +60,7 @@ class ActiveRecord
     // Crea el objeto en memoria que es igual al de la BD
     protected static function createObject($registro)
     {
-        $object = new static;
+        $object = new static();
 
         foreach ($registro as $key => $value) {
             if (property_exists($object, $key)) {
@@ -75,9 +76,12 @@ class ActiveRecord
     {
         $attributes = [];
         foreach (static::$columnsDB as $column) {
-            if ($column === 'id') continue;
+            if ('id' === $column) {
+                continue;
+            }
             $attributes[$column] = $this->$column;
         }
+
         return $attributes;
     }
 
@@ -89,6 +93,7 @@ class ActiveRecord
         foreach ($attributes as $key => $value) {
             $sanitized[$key] = self::$db->escape_string($value);
         }
+
         return $sanitized;
     }
 
@@ -113,29 +118,33 @@ class ActiveRecord
             // Creando un nuevo registro
             $result = $this->create();
         }
+
         return $result;
     }
 
     // Todos los registros
     public static function all()
     {
-        $query = "SELECT * FROM " . static::$table;
+        $query = 'SELECT * FROM ' . static::$table;
         $result = self::consultSQL($query);
+
         return $result;
     }
 
     // Busca un registro por su id
     public static function find($id)
     {
-        $query = "SELECT * FROM " . static::$table  . " WHERE id = {$id}";
+        $query = 'SELECT * FROM ' . static::$table . " WHERE id = {$id}";
         $result = self::consultSQL($query);
+
         return array_shift($result);
     }
 
     public static function where($column, $valor)
     {
-        $query = "SELECT * FROM " . static::$table  . " WHERE {$column} = '{$valor}'";
+        $query = 'SELECT * FROM ' . static::$table . " WHERE {$column} = '{$valor}'";
         $result = self::consultSQL($query);
+
         return array_shift($result); // array_shift devuelve el primer elemento de un array
     }
 
@@ -143,14 +152,16 @@ class ActiveRecord
     public static function SQL($query)
     {
         $result = self::consultSQL($query);
+
         return $result;
     }
 
     // Obtener Registros con cierta cantidad
     public static function get($limit)
     {
-        $query = "SELECT * FROM " . static::$table . " LIMIT {$limit}";
+        $query = 'SELECT * FROM ' . static::$table . " LIMIT {$limit}";
         $result = self::consultSQL($query);
+
         return array_shift($result);
     }
 
@@ -161,7 +172,7 @@ class ActiveRecord
         $attributes = $this->sanitizeAttributes();
 
         // Insertar en la base de datos
-        $query = " INSERT INTO " . static::$table . " ( ";
+        $query = ' INSERT INTO ' . static::$table . ' ( ';
         $query .= join(', ', array_keys($attributes));
         $query .= " ) VALUES (' ";
         $query .= join("', '", array_values($attributes));
@@ -171,9 +182,10 @@ class ActiveRecord
 
         // result de la consulta
         $result = self::$db->query($query);
+
         return [
-            'result' =>  $result,
-            'id' => self::$db->insert_id
+            'result' => $result,
+            'id' => self::$db->insert_id,
         ];
     }
 
@@ -190,21 +202,23 @@ class ActiveRecord
         }
 
         // Consulta SQL
-        $query = "UPDATE " . static::$table . " SET ";
-        $query .=  join(', ', $valores);
+        $query = 'UPDATE ' . static::$table . ' SET ';
+        $query .= join(', ', $valores);
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
-        $query .= " LIMIT 1 ";
+        $query .= ' LIMIT 1 ';
 
         // Actualizar BD
         $result = self::$db->query($query);
+
         return $result;
     }
 
     // delete un Registro por su ID
     public function delete()
     {
-        $query = "DELETE FROM "  . static::$table . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+        $query = 'DELETE FROM ' . static::$table . ' WHERE id = ' . self::$db->escape_string($this->id) . ' LIMIT 1';
         $result = self::$db->query($query);
+
         return $result;
     }
 }

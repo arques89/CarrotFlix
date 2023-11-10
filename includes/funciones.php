@@ -2,9 +2,9 @@
 
 function debuguear($variable): string
 {
-    echo "<pre>";
+    echo '<pre>';
     var_dump($variable);
-    echo "</pre>";
+    echo '</pre>';
     exit;
 }
 
@@ -12,6 +12,7 @@ function debuguear($variable): string
 function s($html): string
 {
     $s = htmlspecialchars($html);
+
     return $s;
 }
 
@@ -39,5 +40,6 @@ function isAdmin(): bool
     if (!isset($_SESSION)) {
         session_start();
     }
+
     return isset($_SESSION['admin']) && !empty($_SESSION['admin']);
 }

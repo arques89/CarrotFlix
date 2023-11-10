@@ -19,7 +19,6 @@ class Router
 
     public function comprobarRutas()
     {
-
         // Proteger Rutas...
         session_start();
 
@@ -28,15 +27,14 @@ class Router
 
         // $auth = $_SESSION['login'] ?? null;
 
-        $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
+        $currentUrl = '' === $_SERVER['REQUEST_URI'] ? '/' : $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
 
-        if ($method === 'GET') {
+        if ('GET' === $method) {
             $fn = $this->getRoutes[$currentUrl] ?? null;
         } else {
             $fn = $this->postRoutes[$currentUrl] ?? null;
         }
-
 
         if ($fn) {
             // Call user fn va a llamar una función cuando no sabemos cual sera
@@ -48,7 +46,6 @@ class Router
 
     public function render($view, $datos = [])
     {
-
         // Leer lo que le pasamos  a la vista
         foreach ($datos as $key => $value) {
             $$key = $value;  // Doble signo de dolar significa: variable variable, básicamente nuestra variable sigue siendo la original, pero al asignarla a otra no la reescribe, mantiene su valor, de esta forma el nombre de la variable se asigna dinamicamente

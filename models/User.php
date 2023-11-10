@@ -17,7 +17,6 @@ class User extends ActiveRecord
     public $token;
     public $admin;
 
-
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
@@ -43,6 +42,7 @@ class User extends ActiveRecord
         if (!$this->password) {
             self::$alertas['error'][] = 'El Password no puede ir vacio';
         }
+
         return self::$alertas;
     }
 
@@ -67,6 +67,7 @@ class User extends ActiveRecord
         if ($this->password !== $this->password2) {
             self::$alertas['error'][] = 'Los password son diferentes';
         }
+
         return self::$alertas;
     }
 
@@ -79,6 +80,7 @@ class User extends ActiveRecord
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             self::$alertas['error'][] = 'Email no válido';
         }
+
         return self::$alertas;
     }
 
@@ -91,6 +93,7 @@ class User extends ActiveRecord
         if (strlen($this->password) < 6) {
             self::$alertas['error'][] = 'El password debe contener al menos 6 caracteres';
         }
+
         return self::$alertas;
     }
 

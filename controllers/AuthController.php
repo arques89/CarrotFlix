@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Controllers;
 
+use Classes\Email;
 use Model\User;
 use MVC\Router;
-use Classes\Email;
 
-class AuthController
+final class AuthController
 {
     public static function login(Router $router)
     {
-
         $alertas = [];
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $user = new User($_POST);
 
             $alertas = $user->validateLogin();
@@ -27,7 +27,6 @@ class AuthController
                 } else {
                     // El Usuario existe
                     if (password_verify($_POST['password'], $user->password)) {
-
                         // Iniciar la sesión
                         session_start();
                         $_SESSION['id'] = $user->id;
@@ -56,13 +55,13 @@ class AuthController
         // Render a la vista
         $router->render('auth/login', [
             'titulo' => 'Iniciar Sesión',
-            'alertas' => $alertas
+            'alertas' => $alertas,
         ]);
     }
 
     public static function logout()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
             session_start();
             $_SESSION = [];
             header('Location: /');
@@ -72,10 +71,9 @@ class AuthController
     public static function register(Router $router)
     {
         $alertas = [];
-        $user = new User;
+        $user = new User();
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $user->synchronizeDB($_POST);
             $alertas = $user->validateAccount();
 
@@ -110,12 +108,11 @@ class AuthController
             }
         }
 
-
         // Render a la vista
         $router->render('auth/register', [
             'titulo' => 'Crea tu cuenta en CarrotFlix',
             'user' => $user,
-            'alertas' => $alertas
+            'alertas' => $alertas,
         ]);
     }
 
@@ -123,7 +120,7 @@ class AuthController
     {
         $alertas = [];
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $user = new User($_POST);
             $alertas = $user->validateEmail();
 
@@ -132,7 +129,6 @@ class AuthController
                 $user = User::where('email', $user->email);
 
                 if ($user && $user->confirmed) {
-
                     // Generar un nuevo token
                     $user->createToken();
                     unset($user->password2);
@@ -149,7 +145,6 @@ class AuthController
 
                     $alertas['exito'][] = 'Hemos enviado las instrucciones a tu email';
                 } else {
-
                     // User::setAlert('error', 'El Usuario no existe o no esta confirmado');
 
                     $alertas['error'][] = 'El Usuario no existe o no esta confirmado';
@@ -160,22 +155,19 @@ class AuthController
         // Render a la vista
         $router->render('auth/recuperar', [
             'titulo' => '¿Olvidaste tu contraseña?',
-            'alertas' => $alertas
+            'alertas' => $alertas,
         ]);
     }
 
-
     public static function message(Router $router)
     {
-
         $router->render('auth/message', [
-            'titulo' => 'Cuenta creada satisfactoriamente'
+            'titulo' => 'Cuenta creada satisfactoriamente',
         ]);
     }
 
     public static function confirm(Router $router)
     {
-
         $token = s($_GET['token']);
 
         if (!$token) {
@@ -187,7 +179,10 @@ class AuthController
 
         if (empty($user)) {
             // No se encontró un usuario con ese token
-            User::setAlert('error', 'Token no válido, su cuenta no ha sido confirmada');
+            User::setAlert(
+                'error',
+                'Token no válido, su cuenta no ha sido confirmada'
+            );
         } else {
             // Confirmar la cuenta
             $user->confirmed = 1;
@@ -202,7 +197,7 @@ class AuthController
 
         $router->render('auth/confirmar', [
             'titulo' => 'Confirma tu cuenta',
-            'alertas' => User::getAlerts()
+            'alertas' => User::getAlerts(),
         ]);
     }
 }
