@@ -166,7 +166,7 @@ final class AuthController
         ]);
     }
 
-    public static function confirm(Router $router)
+    public static function confirm_account(Router $router)
     {
         $token = s($_GET['token']);
 

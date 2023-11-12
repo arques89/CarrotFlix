@@ -41,7 +41,7 @@ class Email
         $content = '<html>';
         $content .= '<p><strong>Hola ' . $this->name . ' ' . $this->surname . ',';
         $content .= '</strong> has registrado correctamente tu cuenta pero es necesario confirmarla.</p>';
-        $content .= "<p>Presiona en <a href='" . $_ENV['HOST'] . '/confirmar-cuenta?token=' . $this->token . "'>Confirmar Cuenta</a>";
+        $content .= "<p>Presiona en <a href='" . $_ENV['HOST'] . '/confirm-account?token=' . $this->token . "'>Confirmar Cuenta</a>";
         $content .= '<p>Si no has creado esta cuenta, puedes ignorar el mensaje.</p>';
         $content .= '<p>Atentamente,</p>';
         $content .= '<p>Equipo de CarrotFlix S.L.</p>';

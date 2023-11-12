@@ -26,7 +26,8 @@ $router->post('/recuperar', [AuthController::class, 'recuperar']);
 
 // Confirmación registro
 $router->get('/message', [AuthController::class, 'message']);
-$router->get('/confirm-account', [AuthController::class, 'confirm']);
+$router->get('/confirm-account', [AuthController::class, 'confirm_account']);
+
 // Página 404
 $router->get('/404', [PagesController::class, 'error']);
 
