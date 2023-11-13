@@ -195,7 +195,7 @@ final class AuthController
             User::setAlert('exito', 'Cuenta confirmada con éxito');
         }
 
-        $router->render('auth/confirmar', [
+        $router->render('auth/confirm', [
             'titulo' => 'Confirma tu cuenta',
             'alertas' => User::getAlerts(),
         ]);
