@@ -33,7 +33,7 @@ final class AuthController
                         $_SESSION['name'] = $user->getName();
                         $_SESSION['surname'] = $user->getSurname();
                         $_SESSION['email'] = $user->getEmail();
-                        $_SESSION['admin'] = $user->getAdmin() ?? null;
+                        $_SESSION['isAdmin'] = $user->getIsAdmin() ?? null;
 
                         // Redirección
                         if ($user) {

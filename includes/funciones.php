@@ -41,5 +41,5 @@ function isAdmin(): bool
         session_start();
     }
 
-    return isset($_SESSION['admin']) && !empty($_SESSION['admin']);
+    return isset($_SESSION['isAdmin']) && !empty($_SESSION['isAdmin']);
 }

@@ -5,7 +5,7 @@ namespace Model;
 class User extends ActiveRecord
 {
     protected static $table = 'users';
-    protected static $columnsDB = ['id', 'name', 'surname', 'email', 'password', 'confirmed', 'token', 'admin'];
+    protected static $columnsDB = ['id', 'name', 'surname', 'email', 'password', 'confirmed', 'token', 'isAdmin'];
 
     protected $id;
     protected $name;
@@ -27,7 +27,7 @@ class User extends ActiveRecord
         $this->password2 = $args['password2'] ?? '';
         $this->confirmed = $args['confirmed'] ?? 0;
         $this->token = $args['token'] ?? '';
-        $this->admin = $args['admin'] ?? 0;
+        $this->admin = $args['isAdmin'] ?? 0;
     }
 
     /** GETTERS **/
@@ -62,7 +62,7 @@ class User extends ActiveRecord
         return $this->token;
     }
 
-    public function getAdmin() {
+    public function getIsAdmin() {
         return $this->admin;
     }
 
