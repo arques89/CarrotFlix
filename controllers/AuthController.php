@@ -21,19 +21,19 @@ final class AuthController
 
             if (empty($alertas)) {
                 // Verificar quel el usuario exista
-                $user = User::where('email', $user->email);
-                if (!$user || !$user->confirmed) {
+                $user = User::where('email', $user->getEmail());
+                if (!$user || !$user->getConfirmed()) {
                     User::setAlert('error', 'El usuario no existe o no esta confirmado');
                 } else {
                     // El Usuario existe
-                    if (password_verify($_POST['password'], $user->password)) {
+                    if (password_verify($_POST['password'], $user->getPassword())) {
                         // Iniciar la sesión
                         session_start();
-                        $_SESSION['id'] = $user->id;
-                        $_SESSION['name'] = $user->name;
-                        $_SESSION['surname'] = $user->surname;
-                        $_SESSION['email'] = $user->email;
-                        $_SESSION['admin'] = $user->admin ?? null;
+                        $_SESSION['id'] = $user->getId();
+                        $_SESSION['name'] = $user->getName();
+                        $_SESSION['surname'] = $user->getSurname();
+                        $_SESSION['email'] = $user->getEmail();
+                        $_SESSION['admin'] = $user->getAdmin() ?? null;
 
                         // Redirección
                         if ($user) {
@@ -78,7 +78,7 @@ final class AuthController
             $alertas = $user->validateAccount();
 
             if (empty($alertas)) {
-                $existeUsuario = User::where('email', $user->email);
+                $existeUsuario = User::where('email', $user->getEmail());
 
                 if ($existeUsuario) {
                     User::setAlert('error', 'El Usuario ya esta registrado');
@@ -88,7 +88,8 @@ final class AuthController
                     $user->hashPassword();
 
                     // Eliminar password2
-                    unset($user->password2);
+                    $password2 = $user->getPassword2();
+                    unset($password2);
 
                     // Generar el Token
                     $user->createToken();
@@ -97,7 +98,7 @@ final class AuthController
                     $resultado = $user->save();
 
                     // Enviar email
-                    $email = new Email($user->email, $user->name, $user->surname, $user->token);
+                    $email = new Email($user->getEmail(), $user->getName(), $user->getSurname(), $user->getToken());
 
                     $email->sendConfirmation();
 
@@ -126,18 +127,19 @@ final class AuthController
 
             if (empty($alertas)) {
                 // Buscar el usuario
-                $user = User::where('email', $user->email);
+                $user = User::where('email', $user->getEmail());
 
                 if ($user && $user->confirmed) {
                     // Generar un nuevo token
                     $user->createToken();
-                    unset($user->password2);
+                    $password2 = $user->getPassword2();
+                    unset($password2);
 
                     // Actualizar el usuario
                     $user->save();
 
                     // Enviar el email
-                    $email = new Email($user->email, $user->name, $user->token);
+                    $email = new Email($user->getEmail(), $user->getName(), $user->token);
                     $email->sendInstructions();
 
                     // Imprimir la alerta
@@ -185,9 +187,10 @@ final class AuthController
             );
         } else {
             // Confirmar la cuenta
-            $user->confirmed = 1;
-            $user->token = '';
-            unset($user->password2);
+            $user->setConfirmed(1);
+            $user->setToken("");
+            $password2 = $user->getPassword2();
+            unset($password2);
 
             // Guardar en la BD
             $user->save();

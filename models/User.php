@@ -7,15 +7,15 @@ class User extends ActiveRecord
     protected static $table = 'users';
     protected static $columnsDB = ['id', 'name', 'surname', 'email', 'password', 'confirmed', 'token', 'admin'];
 
-    public $id;
-    public $name;
-    public $surname;
-    public $email;
-    public $password;
-    public $password2;
-    public $confirmed;
-    public $token;
-    public $admin;
+    protected $id;
+    protected $name;
+    protected $surname;
+    protected $email;
+    protected $password;
+    protected $password2;
+    protected $confirmed;
+    protected $token;
+    protected $admin;
 
     public function __construct($args = [])
     {
@@ -29,6 +29,52 @@ class User extends ActiveRecord
         $this->token = $args['token'] ?? '';
         $this->admin = $args['admin'] ?? 0;
     }
+
+    /** GETTERS **/
+    public function getId() {
+        return $this->id;
+    }
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getSurname() {
+        return $this->surname;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
+    public function getPassword2() {
+        return $this->password2;
+    }
+
+    public function getConfirmed() {
+        return $this->confirmed;
+    }
+
+    public function getToken() {
+        return $this->token;
+    }
+
+    public function getAdmin() {
+        return $this->admin;
+    }
+
+     /** SETTERS **/
+    public function setConfirmed($confirmed) {
+        $this->confirmed = $confirmed;
+    }
+
+    public function setToken($token) {
+        $this->token = $token;
+    }
+
 
     // validate el Login de Usuarios
     public function validateLogin()

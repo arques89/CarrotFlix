@@ -18,17 +18,17 @@
                 <form method="POST" action="/register" class="formulario">
                     <div class="formulario__campo">
                         <label for="name" class="formulario__label">Nombre</label>
-                        <input type="text" class="formulario__input" placeholder="Su nombre" id="name" name="name" value="<?php echo $user->name; ?>">
+                        <input type="text" class="formulario__input" placeholder="Su nombre" id="name" name="name" value="<?php echo $user->getName(); ?>">
                     </div>
 
                     <div class="formulario__campo">
                         <label for="surname" class="formulario__label">Apellido</label>
-                        <input type="text" class="formulario__input" placeholder="Su apellido" id="surname" name="surname" value="<?php echo $user->surname; ?>">
+                        <input type="text" class="formulario__input" placeholder="Su apellido" id="surname" name="surname" value="<?php echo $user->getSurname(); ?>">
                     </div>
 
                     <div class="formulario__campo">
                         <label for="email" class="formulario__label">Email</label>
-                        <input type="email" class="formulario__input" placeholder="Su email" id="email" name="email" value="<?php echo $user->email; ?>">
+                        <input type="email" class="formulario__input" placeholder="Su email" id="email" name="email" value="<?php echo $user->getEmail(); ?>">
                     </div>
 
                     <div class="formulario__campo">

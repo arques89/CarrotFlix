@@ -6,10 +6,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Email
 {
-    public $email;
-    public $name;
-    public $surname;
-    public $token;
+    protected $email;
+    protected $name;
+    protected $surname;
+    protected $token;
 
     public function __construct($email, $name, $surname, $token)
     {
