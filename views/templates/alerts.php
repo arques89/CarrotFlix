@@ -1,5 +1,5 @@
 <?php
-foreach ($alertas as $key => $mensajes) {
+foreach ($alerts as $key => $mensajes) {
     foreach ($mensajes as $mensaje) {
         ?>
         <div class="alerta <?php echo $key; ?>">

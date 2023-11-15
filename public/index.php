@@ -16,17 +16,17 @@ $router->get('/login', [AuthController::class, 'login']);
 $router->post('/login', [AuthController::class, 'login']);
 $router->post('/logout', [AuthController::class, 'logout']);
 
-// Registro
+// Register
 $router->get('/register', [AuthController::class, 'register']);
 $router->post('/register', [AuthController::class, 'register']);
 
-// Recuperar
-$router->get('/recuperar', [AuthController::class, 'recuperar']);
-$router->post('/recuperar', [AuthController::class, 'recuperar']);
+// Reset-password
+$router->get('/reset-password', [AuthController::class, 'resetPassword']);
+$router->post('/reset-password', [AuthController::class, 'resetPassword']);
 
-// Confirmación registro
+// Confirmación register
 $router->get('/message', [AuthController::class, 'message']);
-$router->get('/confirm-account', [AuthController::class, 'confirm_account']);
+$router->get('/confirm-account', [AuthController::class, 'confirmAccount']);
 
 // Página 404
 $router->get('/404', [PagesController::class, 'error']);

@@ -8,11 +8,11 @@
     <div id="contenedor">
         <div id="central">
             <div id="login">
-                <div class="titulo">
+                <div class="title">
                     Bienvenido
                 </div>
                 <?php
-                require_once __DIR__ . '../../templates/alertas.php';
+                require_once __DIR__ . '../../templates/alerts.php';
                 ?>
                 <form method="POST" action="/login" class="formulario">
                     <div class="formulario__campo">
@@ -28,7 +28,7 @@
                     <input type="submit" class="formulario__submit" value="Iniciar sesión" />
                 </form>
                 <div class="pie-form">
-                    <a href="/recuperar">¿Perdiste tu contraseña?</a>
+                    <a href="/reset-password">¿Perdiste tu contraseña?</a>
                     <a href="/register">¿No tienes Cuenta? Registrate</a>
                 </div>
             </div>

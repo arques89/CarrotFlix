@@ -10,7 +10,7 @@
                 </form>
             <?php } ?>
             <?php if (empty($_SESSION)) { ?>
-                <a href="/register" class="header__enlace">Registro</a>
+                <a href="/register" class="header__enlace">Register</a>
             <?php } ?>
 
         </nav>

@@ -6,21 +6,21 @@
     </video>
 
     <?php
-    require_once __DIR__ . '../../templates/alertas.php';
+    require_once __DIR__ . '../../templates/alerts.php';
     ?>
 
     <div id="contenedor">
         <div id="central">
             <div id="login">
-                <div class="titulo">
+                <div class="title">
                     Recuperar contraseña
                 </div>
-                <form method="POST" action="/recuperar" id="loginform">
+                <form method="POST" action="/reset-password" id="loginform">
                     <div class="campo">
                         <label for="correo">Correo electrónico:</label>
                         <input type="text" name="correo" placeholder="Correo Electronico" required>
                     </div>
-                    <input type="submit" class="formulario__submit" value="Recuperar" />
+                    <input type="submit" class="formulario__submit" value="Reset-password" />
                 </form>
                 <div class="pie-form">
                     <a href="/login">¿Tienes Cuenta? Inicia sesión</a>

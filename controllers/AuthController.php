@@ -12,14 +12,14 @@ final class AuthController
 {
     public static function login(Router $router)
     {
-        $alertas = [];
+        $alerts = [];
 
         if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $user = new User($_POST);
 
-            $alertas = $user->validateLogin();
+            $alerts = $user->validateLogin();
 
-            if (empty($alertas)) {
+            if (empty($alerts)) {
                 // Verificar quel el usuario exista
                 $user = User::where('email', $user->getEmail());
                 if (!$user || !$user->getConfirmed()) {
@@ -50,12 +50,12 @@ final class AuthController
                 }
             }
         }
-        $alertas = User::getAlerts();
+        $alerts = User::getAlerts();
 
         // Render a la vista
         $router->render('auth/login', [
-            'titulo' => 'Iniciar Sesión',
-            'alertas' => $alertas,
+            'title' => 'Iniciar Sesión',
+            'alerts' => $alerts,
         ]);
     }
 
@@ -70,19 +70,19 @@ final class AuthController
 
     public static function register(Router $router)
     {
-        $alertas = [];
+        $alerts = [];
         $user = new User();
 
         if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $user->synchronizeDB($_POST);
-            $alertas = $user->validateAccount();
+            $alerts = $user->validateAccount();
 
-            if (empty($alertas)) {
+            if (empty($alerts)) {
                 $existeUsuario = User::where('email', $user->getEmail());
 
                 if ($existeUsuario) {
                     User::setAlert('error', 'El Usuario ya esta registrado');
-                    $alertas = User::getAlerts();
+                    $alerts = User::getAlerts();
                 } else {
                     // Hashear el password
                     $user->hashPassword();
@@ -111,21 +111,21 @@ final class AuthController
 
         // Render a la vista
         $router->render('auth/register', [
-            'titulo' => 'Crea tu cuenta en CarrotFlix',
+            'title' => 'Crea tu cuenta en CarrotFlix',
             'user' => $user,
-            'alertas' => $alertas,
+            'alerts' => $alerts,
         ]);
     }
 
-    public static function recuperar(Router $router)
+    public static function resetPassword(Router $router)
     {
-        $alertas = [];
+        $alerts = [];
 
         if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $user = new User($_POST);
-            $alertas = $user->validateEmail();
+            $alerts = $user->validateEmail();
 
-            if (empty($alertas)) {
+            if (empty($alerts)) {
                 // Buscar el usuario
                 $user = User::where('email', $user->getEmail());
 
@@ -145,30 +145,30 @@ final class AuthController
                     // Imprimir la alerta
                     // User::setAlert('exito', 'Hemos enviado las instrucciones a tu email');
 
-                    $alertas['exito'][] = 'Hemos enviado las instrucciones a tu email';
+                    $alerts['exito'][] = 'Hemos enviado las instrucciones a tu email';
                 } else {
                     // User::setAlert('error', 'El Usuario no existe o no esta confirmado');
 
-                    $alertas['error'][] = 'El Usuario no existe o no esta confirmado';
+                    $alerts['error'][] = 'El Usuario no existe o no esta confirmado';
                 }
             }
         }
 
         // Render a la vista
-        $router->render('auth/recuperar', [
-            'titulo' => '¿Olvidaste tu contraseña?',
-            'alertas' => $alertas,
+        $router->render('auth/reset-password', [
+            'title' => '¿Olvidaste tu contraseña?',
+            'alerts' => $alerts,
         ]);
     }
 
     public static function message(Router $router)
     {
         $router->render('auth/message', [
-            'titulo' => 'Cuenta creada satisfactoriamente',
+            'title' => 'Cuenta creada satisfactoriamente',
         ]);
     }
 
-    public static function confirm_account(Router $router)
+    public static function confirmAccount(Router $router)
     {
         $token = s($_GET['token']);
 
@@ -199,8 +199,8 @@ final class AuthController
         }
 
         $router->render('auth/confirm', [
-            'titulo' => 'Confirma tu cuenta',
-            'alertas' => User::getAlerts(),
+            'title' => 'Confirma tu cuenta',
+            'alerts' => User::getAlerts(),
         ]);
     }
 }

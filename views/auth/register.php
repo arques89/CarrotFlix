@@ -5,14 +5,14 @@
         Tu navegador no soporta el elemento de video.
     </video>
 
-    <div id="contenedor_registro">
+    <div id="contenedor_register">
         <div id="central">
-            <div id="registro">
+            <div id="register">
                 <?php
-                require_once __DIR__ . '../../templates/alertas.php';
+                require_once __DIR__ . '../../templates/alerts.php';
                 ?>
-                <div class="titulo">
-                    Registro
+                <div class="title">
+                    Register
                 </div>
 
                 <form method="POST" action="/register" class="formulario">
@@ -44,7 +44,7 @@
                     <input type="submit" class="formulario__submit" value="Crear cuenta" />
                 </form>
                 <div class="pie-form">
-                    <a href="/recuperar">¿Perdiste tu contraseña?</a>
+                    <a href="/reset-password">¿Perdiste tu contraseña?</a>
                     <a href="/login">¿Tienes Cuenta? Inicia Sesión</a>
                 </div>
             </div>
