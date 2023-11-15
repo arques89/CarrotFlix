@@ -23,6 +23,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(60) DEFAULT NULL,
   `confirmed` tinyint(1) DEFAULT NULL,
   `token` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `admin` tinyint(1) DEFAULT NULL,
+  `isAdmin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
