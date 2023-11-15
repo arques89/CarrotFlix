@@ -41,11 +41,19 @@ class Email
         $content = '<html>';
         $content .= '<p><strong>Hola ' . $this->name . ' ' . $this->surname . ',';
         $content .= '</strong> has registrado correctamente tu cuenta pero es necesario confirmarla.</p>';
-        $content .= "<p>Presiona en <a href='" . $_ENV['HOST'] . '/confirm-account?token=' . $this->token . "'>Confirmar Cuenta</a>";
+        $content .= "<p>Presiona en <a href='" . $_ENV['HOST'] . '/confirm-account?token=' . $this->token . "'>Confirmar Cuenta</a></p>";
         $content .= '<p>Si no has creado esta cuenta, puedes ignorar el mensaje.</p>';
+        $content .= '<p>Detalles de la cuenta:</p>';
+        $content .= '<ul>';
+        $content .= '<li>Nombre: ' . $this->name . ' ' . $this->surname . '</li>';
+        $content .= '<li>Correo electrónico: ' . $this->email . '</li>';
+        $content .= '</ul>';
+        $content .= '<p>Estamos emocionados de tenerte con nosotros. Para comenzar a disfrutar de todos nuestros servicios, simplemente inicia sesión con tu nombre de usuario y la contraseña que elegiste durante el registro.</p>';
+        $content .= '<p>Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con nuestro equipo de soporte a través de <a href="mailto:help@carrotflix.com">help@carrotflix.com</a>.</p>';
         $content .= '<p>Atentamente,</p>';
         $content .= '<p>Equipo de CarrotFlix S.L.</p>';
         $content .= '</html>';
+
         $mail->Body = $content;
 
         // Enviar el mail
