@@ -15,7 +15,7 @@ class User extends ActiveRecord
     protected $password2;
     protected $confirmed;
     protected $token;
-    protected $admin;
+    protected $isAdmin;
 
     public function __construct($args = [])
     {
@@ -27,7 +27,7 @@ class User extends ActiveRecord
         $this->password2 = $args['password2'] ?? '';
         $this->confirmed = $args['confirmed'] ?? 0;
         $this->token = $args['token'] ?? '';
-        $this->admin = $args['isAdmin'] ?? 0;
+        $this->isAdmin = $args['isAdmin'] ?? 0;
     }
 
     /** GETTERS **/
@@ -63,7 +63,7 @@ class User extends ActiveRecord
     }
 
     public function getIsAdmin() {
-        return $this->admin;
+        return $this->isAdmin;
     }
 
      /** SETTERS **/
