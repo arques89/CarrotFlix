@@ -27,7 +27,8 @@
         <a href="/">
             <h2 class="barra__logo">
                 <?php if (isAuth()) { ?>
-                    Bienvenido: <span><?php echo $_SESSION['name']; ?></span>
+                    Bienvenido: <span><?php echo $_SESSION['name'];?></span> 
+                    Rol: <span><?php echo isAdmin() ? "Admin" : "User"; ?></span>  
                 <?php } ?>
             </h2>
         </a>
