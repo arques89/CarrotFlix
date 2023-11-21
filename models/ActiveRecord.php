@@ -91,11 +91,20 @@ class ActiveRecord
         $attributes = $this->attributes();
         $sanitized = [];
         foreach ($attributes as $key => $value) {
-            $sanitized[$key] = self::$db->escape_string($value);
+            // Verificar si $value no es nulo antes de escaparlo
+            if ($value !== null) {
+                $sanitized[$key] = self::$db->escape_string($value);
+            } else {
+                // Manejar el caso cuando $value es nulo
+                // Puede ser asignar un valor por defecto, lanzar una excepción, etc.
+                // Aquí se está asignando una cadena vacía como valor por defecto
+                $sanitized[$key] = '';
+            }
         }
-
+    
         return $sanitized;
     }
+    
 
     // Sincroniza BD con Objetos en memoria
     public function synchronizeDB($args = [])

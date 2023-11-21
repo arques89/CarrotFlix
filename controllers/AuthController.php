@@ -129,7 +129,7 @@ final class AuthController
                 // Buscar el usuario
                 $user = User::where('email', $user->getEmail());
 
-                if ($user && $user->confirmed) {
+                if ($user && $user->getConfirmed()) {
                     // Generar un nuevo token
                     $user->createToken();
                     $password2 = $user->getPassword2();
@@ -139,7 +139,7 @@ final class AuthController
                     $user->save();
 
                     // Enviar el email
-                    $email = new Email($user->getEmail(), $user->getName(), $user->token);
+                    $email = new Email($user->getEmail(), $user->getName(), $user->getSurname(), $user->getToken());
                     $email->sendInstructions();
 
                     // Imprimir la alerta
@@ -158,6 +158,59 @@ final class AuthController
         $router->render('auth/reset-password', [
             'title' => '¿Olvidaste tu contraseña?',
             'alerts' => $alerts,
+        ]);
+    }
+
+    public static function newPassword(Router $router)
+    {
+        $token = s($_GET['token']);
+
+        $valid_token = true;
+
+        if (!$token) {
+            header('Location: /');
+        }
+
+        // Identificar el usuario con este token
+        $user = User::where('token', $token);
+
+        if (empty($user)) {
+            User::setAlert('error', 'Token No Válido, inténtalo de nuevo');
+            $valid_token = false;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Añadir el nuevo password
+            $user->synchronizeDB($_POST);
+
+            // Validar el password
+            $alerts = $user->validatePassword();
+
+            if (empty($alerts)) {
+                // Hashear el nuevo password
+                $user->hashPassword();
+
+                // Eliminar el Token
+                $user->setToken(null);
+
+                // Guardar el usuario en la BD
+                $resultado = $user->save();
+
+                // Redireccionar
+                if ($resultado) {
+                    header('Location: /login');
+                }
+            }
+        }
+
+        $alerts = User::getAlerts();
+
+        // Muestra la vista
+        $router->render('auth/new-password', [
+            'title' => 'Nueva contraseña',
+            'alerts' => $alerts,
+            'valid_token' => $valid_token
         ]);
     }
 

@@ -17,10 +17,10 @@
                 </div>
                 <form method="POST" action="/reset-password" id="loginform">
                     <div class="campo">
-                        <label for="correo">Correo electrónico:</label>
-                        <input type="text" name="correo" placeholder="Correo Electronico" required>
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" name="email" placeholder="Correo Electronico" required>
                     </div>
-                    <input type="submit" class="formulario__submit" value="Reset-password" />
+                    <input type="submit" class="formulario__submit" value="Restablecer contraseña" />
                 </form>
                 <div class="pie-form">
                     <a href="/login">¿Tienes Cuenta? Inicia sesión</a>
