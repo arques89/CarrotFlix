@@ -143,9 +143,9 @@ final class AuthController
                     $email->sendInstructions();
 
                     // Imprimir la alerta
-                    // User::setAlert('exito', 'Hemos enviado las instrucciones a tu email');
+                    // User::setAlert('exito', '¡Te hemos enviado un email con las instrucciones para restablecer tu contraseña!');
 
-                    $alerts['exito'][] = 'Hemos enviado las instrucciones a tu email';
+                    $alerts['exito'][] = '¡Te hemos enviado un email con las instrucciones para restablecer tu contraseña!';
                 } else {
                     // User::setAlert('error', 'El Usuario no existe o no esta confirmado');
 

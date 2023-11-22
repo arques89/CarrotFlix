@@ -5,15 +5,14 @@
         Tu navegador no soporta el elemento de video.
     </video>
 
-    <?php
-    require_once __DIR__ . '../../templates/alerts.php';
-    ?>
-
     <div id="contenedor">
         <div id="central">
             <div id="login">
+                <?php
+                    require_once __DIR__ . '/../templates/alerts.php';
+                ?>
                 <div class="title">
-                    Recuperar contraseña
+                    Restablecer contraseña
                 </div>
                 <form method="POST" action="/reset-password" id="loginform">
                     <div class="campo">
