@@ -31,56 +31,108 @@ class User extends ActiveRecord
     }
 
     /** GETTERS **/
+    /**
+     * Gets the id of user object.
+     * @return int Returns the id of user object.
+    */
     public function getId() {
         return $this->id;
     }
+
+    /**
+     * Gets the name of user object.
+     * @return string Returns the name of user object.
+    */
     public function getName() {
         return $this->name;
     }
 
+    /**
+     * Gets the surname of user object.
+     * @return string Returns the surname of user object.
+    */
     public function getSurname() {
         return $this->surname;
     }
 
+    /**
+     * Gets the email of user object.
+     * @return string Returns the email of user object.
+    */
     public function getEmail() {
         return $this->email;
     }
 
+    /**
+     * Gets the password of user object.
+     * @return string Returns the password of user object.
+    */
     public function getPassword() {
         return $this->password;
     }
 
+    /**
+     * Gets the re typed password of user object.
+     * @return string Returns the re typed password of user object.
+    */
     public function getPassword2() {
         return $this->password2;
     }
 
+    /**
+     * Gets the state of confirmed of user object.
+     * @return int Returns the state of confirmed of user object.
+    */
     public function getConfirmed() {
         return $this->confirmed;
     }
 
+    /**
+     * Gets the token of user object.
+     * @return string Returns the token of user object.
+    */
     public function getToken() {
         return $this->token;
     }
 
+    /**
+     * Gets the state is isAdmin of user object.
+     * @return int Returns the state is isAdmin of user object.
+    */
     public function getIsAdmin() {
         return $this->isAdmin;
     }
 
-     /** SETTERS **/
+    /** SETTERS **/
+    /**
+     * Sets the confirmation status of user object.
+     * @return void
+    */
     public function setConfirmed() {
         $this->confirmed = 1;
     }
 
+    /**
+     * Sets the token of user object.
+     * @return void
+    */
     public function setToken(): void
     {
         $this->token = uniqid();
     }
 
+    /**
+     * Clear the token of user object.
+     * @return void
+    */
     public function clearToken() {
         $this->token = null;
     }
 
-    // validate el Login de Usuarios
+    /**
+     * Method responsible for login validation.
+     * @return string Returns an alert if something went wrong with the validation.
+    */
     public function validateLogin()
     {
         if (!$this->email) {
@@ -96,7 +148,10 @@ class User extends ActiveRecord
         return self::$alerts;
     }
 
-    // Validación para cuentas nuevas
+    /**
+     * Method responsible for new accounts creation validation.
+     * @return string Returns an alert if something went wrong with the validation.
+    */
     public function validateAccount()
     {
         if (!$this->name) {
@@ -121,7 +176,10 @@ class User extends ActiveRecord
         return self::$alerts;
     }
 
-    // Valida un email
+    /**
+     * Method responsible for email validation.
+     * @return string Returns an alert if something went wrong with the validation.
+    */
     public function validateEmail()
     {
         if (!$this->email) {
@@ -134,7 +192,10 @@ class User extends ActiveRecord
         return self::$alerts;
     }
 
-    // Valida el Password
+    /**
+     * Method responsible for password validation.
+     * @return string Returns an alert if something went wrong with the validation.
+    */
     public function validatePassword()
     {
         if (!$this->password) {
@@ -147,7 +208,10 @@ class User extends ActiveRecord
         return self::$alerts;
     }
 
-    // Hashea el password
+    /**
+     * Method responsible for hashing password for user object.
+     * @return void Set a hashed password for user object.
+    */
     public function hashPassword(): void
     {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
