@@ -17,7 +17,6 @@
         </form>
     <?php } ?>
 
-
     <div class="acciones">
         <a href="/login" class="acciones__enlace">¿Ya tienes una cuenta? Iniciar sesión!</a>
         <a href="/registro" class="acciones__enlace">¿Aún no tienes una cuenta? Regístrate!</a>
