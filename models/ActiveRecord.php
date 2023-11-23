@@ -57,6 +57,7 @@ class ActiveRecord
      * Executes an SQL query to fetch data into memory objects.
      *
      * @param string $query The SQL query to execute.
+     *
      * @return array Returns an array of memory objects created from the query results.
      */
     public static function consultSQL($query)
@@ -81,6 +82,7 @@ class ActiveRecord
      * Creates a memory object similar to the database object.
      *
      * @param array $register The database record to convert into a memory object.
+     *
      * @return object Returns a memory object.
      */
     // Crea el objeto en memoria que es igual al de la BD
@@ -126,7 +128,7 @@ class ActiveRecord
         $sanitized = [];
         foreach ($attributes as $key => $value) {
             // Verificar si $value no es nulo antes de escaparlo
-            if ($value !== null) {
+            if (null !== $value) {
                 $sanitized[$key] = self::$db->escape_string($value);
             } else {
                 // Manejar el caso cuando $value es nulo
@@ -189,6 +191,7 @@ class ActiveRecord
      * Finds a record by its ID.
      *
      * @param int $id The ID of the record to find.
+     *
      * @return mixed|null Returns the record with the specified ID or null if not found.
      */
     public static function find($id)
@@ -203,7 +206,8 @@ class ActiveRecord
      * Executes an SQL query based on a specific column equality criterion.
      *
      * @param string $column The name of the column in the table.
-     * @param mixed $value The value being sought in the specified column.
+     * @param mixed  $value  The value being sought in the specified column.
+     *
      * @return mixed|null Returns the first result of the query or null if no result is found.
      */
     public static function where($column, $value)
@@ -218,6 +222,7 @@ class ActiveRecord
      * Executes a raw SQL query. Use when model methods are insufficient.
      *
      * @param string $query The SQL query to be executed.
+     *
      * @return mixed The result of the SQL query.
      */
     public static function SQL($query)
@@ -231,6 +236,7 @@ class ActiveRecord
      * Retrieves records with a specific limit.
      *
      * @param int $limit The number of records to retrieve.
+     *
      * @return mixed|null Returns the first set of records based on the specified limit or null if no records are found.
      */
     public static function get($limit)

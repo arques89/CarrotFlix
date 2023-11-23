@@ -179,8 +179,7 @@ final class AuthController
             $valid_token = false;
         }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
             // Añadir el nuevo password
             $user->synchronizeDB($_POST);
 

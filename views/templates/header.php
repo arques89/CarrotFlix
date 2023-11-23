@@ -1,17 +1,17 @@
 <header class="header">
     <div class="header__contenedor">
         <nav class="header__navegacion">
-            <?php if (!isAuth()) { ?>
+            <?php if (!isAuth()) {?>
                 <a href="/login" class="header__enlace">Iniciar sesión</a>
-            <?php } ?>
-            <?php if (!empty($_SESSION)) { ?>
+            <?php }?>
+            <?php if (!empty($_SESSION)) {?>
                 <form method="POST" action="/logout" class="dashboard__form">
                     <input type="submit" value="Cerrar Sesión" class="dashboard__submit--logout">
                 </form>
-            <?php } ?>
-            <?php if (empty($_SESSION)) { ?>
+            <?php }?>
+            <?php if (empty($_SESSION)) {?>
                 <a href="/register" class="header__enlace">Register</a>
-            <?php } ?>
+            <?php }?>
 
         </nav>
 
@@ -26,10 +26,10 @@
     <div class="barra__contenido">
         <a href="/">
             <h2 class="barra__logo">
-                <?php if (isAuth()) { ?>
-                    Bienvenido: <span><?php echo $_SESSION['name'];?></span> 
-                    Rol: <span><?php echo isAdmin() ? "Admin" : "User"; ?></span>  
-                <?php } ?>
+                <?php if (isAuth()) {?>
+                    Bienvenido: <span><?php echo $_SESSION['name']; ?></span>
+                    Rol: <span><?php echo isAdmin() ? 'Admin' : 'User'; ?></span>
+                <?php }?>
             </h2>
         </a>
 
