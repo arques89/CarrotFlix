@@ -10,11 +10,11 @@ class ActiveRecord
     protected static $columnsDB = [];
     protected static $alerts = [];
 
-   /**
+    /**
      * Sets the database connection.
      *
      * @param object $database The database connection object.
-    */
+     */
     public static function setDB($database)
     {
         self::$db = $database;
@@ -25,7 +25,7 @@ class ActiveRecord
      *
      * @param string $type    The type of the alert.
      * @param string $message The message content.
-    */
+     */
     public static function setAlert($type, $message)
     {
         static::$alerts[$type][] = $message;
@@ -35,7 +35,7 @@ class ActiveRecord
      * Retrieves all alerts.
      *
      * @return array Returns an array of alerts.
-    */
+     */
     public static function getAlerts()
     {
         return static::$alerts;
@@ -45,7 +45,7 @@ class ActiveRecord
      * Clears validation alerts.
      *
      * @return array Returns an empty array for alerts.
-    */
+     */
     public function validate()
     {
         static::$alerts = [];
@@ -58,7 +58,7 @@ class ActiveRecord
      *
      * @param string $query The SQL query to execute.
      * @return array Returns an array of memory objects created from the query results.
-    */
+     */
     public static function consultSQL($query)
     {
         // Consultar la base de datos
@@ -82,7 +82,7 @@ class ActiveRecord
      *
      * @param array $register The database record to convert into a memory object.
      * @return object Returns a memory object.
-    */
+     */
     // Crea el objeto en memoria que es igual al de la BD
     protected static function createObject($register)
     {
@@ -119,7 +119,7 @@ class ActiveRecord
      * Sanitizes data before saving it into the database.
      *
      * @return array Returns sanitized attributes.
-    */
+     */
     public function sanitizeAttributes()
     {
         $attributes = $this->attributes();
@@ -135,16 +135,15 @@ class ActiveRecord
                 $sanitized[$key] = '';
             }
         }
-    
+
         return $sanitized;
     }
-    
 
     /**
      * Synchronizes the database with memory objects.
      *
      * @param array $args An array of arguments.
-    */
+     */
     public function synchronizeDB($args = [])
     {
         foreach ($args as $key => $value) {
@@ -158,7 +157,7 @@ class ActiveRecord
      * Saves the record in the database.
      *
      * @return mixed Returns the result of the save operation.
-    */
+     */
     public function save()
     {
         $result = '';
@@ -177,7 +176,7 @@ class ActiveRecord
      * Retrieves all records from the database table.
      *
      * @return array Returns an array of all records from the table.
-    */
+     */
     public static function all()
     {
         $query = 'SELECT * FROM ' . static::$table;
@@ -191,7 +190,7 @@ class ActiveRecord
      *
      * @param int $id The ID of the record to find.
      * @return mixed|null Returns the record with the specified ID or null if not found.
-    */
+     */
     public static function find($id)
     {
         $query = 'SELECT * FROM ' . static::$table . " WHERE id = {$id}";
@@ -200,14 +199,13 @@ class ActiveRecord
         return array_shift($result);
     }
 
-
     /**
      * Executes an SQL query based on a specific column equality criterion.
      *
      * @param string $column The name of the column in the table.
      * @param mixed $value The value being sought in the specified column.
      * @return mixed|null Returns the first result of the query or null if no result is found.
-    */
+     */
     public static function where($column, $value)
     {
         $query = 'SELECT * FROM ' . static::$table . " WHERE {$column} = '{$value}'";
@@ -221,7 +219,7 @@ class ActiveRecord
      *
      * @param string $query The SQL query to be executed.
      * @return mixed The result of the SQL query.
-    */
+     */
     public static function SQL($query)
     {
         $result = self::consultSQL($query);
@@ -234,7 +232,7 @@ class ActiveRecord
      *
      * @param int $limit The number of records to retrieve.
      * @return mixed|null Returns the first set of records based on the specified limit or null if no records are found.
-    */
+     */
     public static function get($limit)
     {
         $query = 'SELECT * FROM ' . static::$table . " LIMIT {$limit}";
@@ -247,7 +245,7 @@ class ActiveRecord
      * Creates a new record.
      *
      * @return array Returns an array with the result of the query and the ID of the newly created record.
-    */
+     */
     public function create()
     {
         // Sanitize the data
@@ -267,16 +265,15 @@ class ActiveRecord
 
         return [
             'result' => $result,
-            'id' => self::$db->insert_id,
+            'id' => self::$db->insert_id
         ];
     }
-
 
     /**
      * Updates the record.
      *
      * @return bool Returns true if the update operation was successful, otherwise false.
-    */
+     */
     public function update()
     {
         // Sanitize the data
@@ -304,7 +301,7 @@ class ActiveRecord
      * Deletes a record by its ID.
      *
      * @return bool Returns true if the deletion operation was successful, otherwise false.
-    */
+     */
     public function delete()
     {
         $query = 'DELETE FROM ' . static::$table . ' WHERE id = ' . self::$db->escape_string($this->id) . ' LIMIT 1';
