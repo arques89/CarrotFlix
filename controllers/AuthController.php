@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace Controllers;
 
@@ -55,7 +55,7 @@ final class AuthController
         // Render a la vista
         $router->render('auth/login', [
             'title' => 'Iniciar Sesión',
-            'alerts' => $alerts,
+            'alerts' => $alerts
         ]);
     }
 
@@ -113,7 +113,7 @@ final class AuthController
         $router->render('auth/register', [
             'title' => 'Crea tu cuenta en CarrotFlix',
             'user' => $user,
-            'alerts' => $alerts,
+            'alerts' => $alerts
         ]);
     }
 
@@ -157,7 +157,7 @@ final class AuthController
         // Render a la vista
         $router->render('auth/reset-password', [
             'title' => '¿Olvidaste tu contraseña?',
-            'alerts' => $alerts,
+            'alerts' => $alerts
         ]);
     }
 
@@ -217,7 +217,7 @@ final class AuthController
     public static function message(Router $router)
     {
         $router->render('auth/message', [
-            'title' => 'Cuenta creada satisfactoriamente',
+            'title' => 'Cuenta creada satisfactoriamente'
         ]);
     }
 
@@ -253,7 +253,7 @@ final class AuthController
 
         $router->render('auth/confirm', [
             'title' => 'Confirma tu cuenta',
-            'alerts' => User::getAlerts(),
+            'alerts' => User::getAlerts()
         ]);
     }
 }
