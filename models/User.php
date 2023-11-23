@@ -67,14 +67,18 @@ class User extends ActiveRecord
     }
 
      /** SETTERS **/
-    public function setConfirmed($confirmed) {
-        $this->confirmed = $confirmed;
+    public function setConfirmed() {
+        $this->confirmed = 1;
     }
 
-    public function setToken($token) {
-        $this->token = $token;
+    public function setToken(): void
+    {
+        $this->token = uniqid();
     }
 
+    public function clearToken() {
+        $this->token = null;
+    }
 
     // validate el Login de Usuarios
     public function validateLogin()
@@ -143,6 +147,13 @@ class User extends ActiveRecord
         return self::$alerts;
     }
 
+    // Hashea el password
+    public function hashPassword(): void
+    {
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+    }
+    
+
     /*  public function newPassword(): array
     {
         if (!$this->current_password) {
@@ -163,15 +174,4 @@ class User extends ActiveRecord
         return password_verify($this->current_password, $this->password);
     } */
 
-    // Hashea el password
-    public function hashPassword(): void
-    {
-        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
-    }
-
-    // Generar un Token
-    public function createToken(): void
-    {
-        $this->token = uniqid();
-    }
 }

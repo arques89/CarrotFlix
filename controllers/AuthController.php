@@ -92,7 +92,7 @@ final class AuthController
                     unset($password2);
 
                     // Generar el Token
-                    $user->createToken();
+                    $user->setToken();
 
                     // Crear un nuevo usuario
                     $resultado = $user->save();
@@ -131,7 +131,7 @@ final class AuthController
 
                 if ($user && $user->getConfirmed()) {
                     // Generar un nuevo token
-                    $user->createToken();
+                    $user->setToken();
                     $password2 = $user->getPassword2();
                     unset($password2);
 
@@ -192,7 +192,7 @@ final class AuthController
                 $user->hashPassword();
 
                 // Eliminar el Token
-                $user->setToken(null);
+                $user->clearToken();
 
                 // Guardar el usuario en la BD
                 $resultado = $user->save();
@@ -240,8 +240,8 @@ final class AuthController
             );
         } else {
             // Confirmar la cuenta
-            $user->setConfirmed(1);
-            $user->setToken("");
+            $user->setConfirmed();
+            $user->clearToken();
             $password2 = $user->getPassword2();
             unset($password2);
 
