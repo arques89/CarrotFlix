@@ -31,7 +31,7 @@ class Email
         $mail->Password = $_ENV['EMAIL_PASS'];
 
         $mail->setFrom('cuentas@carrotflix.com');
-        $mail->addAddress($this->email, $this->name . $this->surname);
+        $mail->addAddress($this->email, $this->name . ' ' . $this->surname);
         $mail->Subject = 'Confirma tu Cuenta';
 
         // Set HTML
@@ -72,8 +72,7 @@ class Email
         $mail->Password = $_ENV['EMAIL_PASS'];
 
         $mail->setFrom('cuentas@carrotflix.com');
-        $fullname = $this->name . ' ' . $this->surname;
-        $mail->addAddress($this->email, $fullname);
+        $mail->addAddress($this->email, $this->name . ' ' . $this->surname);
         $mail->Subject = 'Reestablece tu password';
 
         // Set HTML
