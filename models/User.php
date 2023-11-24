@@ -165,9 +165,7 @@ class User extends ActiveRecord
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             self::$alerts['error'][] = 'El email introducido no es válido.';
         }
-        if (!$this->password) {
-            self::$alerts['error'][] = 'Ha de informar una contraseña.';
-        }
+        $this->validatePassword();
 
         return self::$alerts;
     }
@@ -188,15 +186,7 @@ class User extends ActiveRecord
         if (!$this->email) {
             self::$alerts['error'][] = 'El campo email es obligatorio.';
         }
-        if (!$this->password) {
-            self::$alerts['error'][] = 'El campo contraseña no puede ir vacío.';
-        }
-        if (strlen($this->password) < 6) {
-            self::$alerts['error'][] = 'El campo contraseña debe contener al menos 6 caracteres.';
-        }
-        if ($this->password !== $this->password2) {
-            self::$alerts['error'][] = 'Las contraseñas introducidas son diferentes.';
-        }
+        $this->validatePassword();
 
         return self::$alerts;
     }
@@ -227,9 +217,10 @@ class User extends ActiveRecord
     {
         if (!$this->password) {
             self::$alerts['error'][] = 'El campo contraseña no puede ir vacío.';
-        }
-        if (strlen($this->password) < 6) {
-            self::$alerts['error'][] = 'El campo contraseña debe contener al menos 6 caracteres.';
+        } elseif (strlen($this->password) < 6) {
+            self::$alerts['error'][] = 'La contraseña ha de contener al menos 6 caracteres.';
+        } elseif ($this->password !== $this->password2) {
+            self::$alerts['error'][] = 'Las contraseñas introducidas son diferentes.';
         }
 
         return self::$alerts;
@@ -247,20 +238,12 @@ class User extends ActiveRecord
 
     /*  public function newPassword(): array
     {
-    if (!$this->current_password) {
-    self::$alerts['error'][] = 'El Password Actual no puede ir vacio';
-    }
-    if (!$this->password_nuevo) {
-    self::$alerts['error'][] = 'El Password Nuevo no puede ir vacio';
-    }
-    if (strlen($this->password_nuevo) < 6) {
-    self::$alerts['error'][] = 'El Password debe contener al menos 6 caracteres';
-    }
+    $this->validatePassword();
     return self::$alerts;
     } */
 
     // Comprobar el password
-    /*     public function checkPassword(): bool
+    /* public function checkPassword(): bool
 {
 return password_verify($this->current_password, $this->password);
 } */
