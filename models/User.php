@@ -126,8 +126,6 @@ class User extends ActiveRecord
      * Sets the confirmation status of user object.
      *
      * This method sets the confirmation status of the user object to 1, indicating confirmation.
-     *
-     * @return void
      */
     public function setConfirmed(): void
     {
@@ -138,8 +136,6 @@ class User extends ActiveRecord
      * Sets the token of user object.
      *
      * This method generates a token of length 16 using random bytes and assigns it to the token property.
-     *
-     * @return void
      */
     public function setToken(): void
     {
@@ -150,8 +146,6 @@ class User extends ActiveRecord
 
     /**
      * Clear the token of user object.
-     *
-     * @return void
      */
     public function clearToken(): void
     {
@@ -180,7 +174,6 @@ class User extends ActiveRecord
      * Validates specific fields for emptiness.
      *
      * @param array $fields An associative array where keys are field names and values are error messages.
-     * @return void
      */
     public function validateAccountFields(array $fields): void
     {
@@ -264,5 +257,4 @@ class User extends ActiveRecord
     {
         return password_verify($this->current_password, $this->password);
     }
-
 }

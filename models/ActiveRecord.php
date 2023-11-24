@@ -129,6 +129,7 @@ class ActiveRecord
             // Escapes the value and assigns an empty string if it's null using the ?? (null coalescing) operator
             $sanitized[$key] = self::$db->escape_string($value ?? '');
         }
+
         return $sanitized;
     }
 
@@ -136,7 +137,6 @@ class ActiveRecord
      * Synchronizes the database with memory objects.
      *
      * @param array $args An array of arguments.
-     * @return void
      */
     public function synchronizeDB(array $args = []): void
     {
