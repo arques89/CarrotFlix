@@ -125,15 +125,21 @@ class User extends ActiveRecord
     /**
      * Sets the confirmation status of user object.
      *
+     * This method sets the confirmation status of the user object to 1, indicating confirmation.
+     *
      * @return void
      */
-    public function setConfirmed()
+    public function setConfirmed(): void
     {
         $this->confirmed = 1;
     }
 
     /**
      * Sets the token of user object.
+     *
+     * This method generates a token of length 16 using random bytes and assigns it to the token property.
+     *
+     * @return void
      */
     public function setToken(): void
     {
@@ -147,7 +153,7 @@ class User extends ActiveRecord
      *
      * @return void
      */
-    public function clearToken()
+    public function clearToken(): void
     {
         $this->token = null;
     }
@@ -155,9 +161,9 @@ class User extends ActiveRecord
     /**
      * Method responsible for login validation.
      *
-     * @return string Returns an alert if something went wrong with the validation.
+     * @return array Returns an array of alerts if something went wrong with the validation.
      */
-    public function validateLogin()
+    public function validateLogin(): array
     {
         if (!$this->email) {
             self::$alerts['error'][] = 'El email del usuario es obligatorio.';
@@ -174,8 +180,9 @@ class User extends ActiveRecord
      * Validates specific fields for emptiness.
      *
      * @param array $fields An associative array where keys are field names and values are error messages.
+     * @return void
      */
-    public function validateAccountFields(array $fields)
+    public function validateAccountFields(array $fields): void
     {
         foreach ($fields as $field => $errorMessage) {
             if (empty($this->$field)) {
@@ -187,9 +194,9 @@ class User extends ActiveRecord
     /**
      * Method responsible for new accounts creation validation.
      *
-     * @return array Returns an alert array if something went wrong with the validation.
+     * @return array Returns an array of alerts if something went wrong with the validation.
      */
-    public function validateAccount()
+    public function validateAccount(): array
     {
         $fieldsToValidate = [
             'name' => 'El campo nombre es obligatorio.',
@@ -206,9 +213,9 @@ class User extends ActiveRecord
     /**
      * Method responsible for email validation.
      *
-     * @return string Returns an alert if something went wrong with the validation.
+     * @return array Returns an array of alerts if something went wrong with the validation.
      */
-    public function validateEmail()
+    public function validateEmail(): array
     {
         if (!$this->email) {
             self::$alerts['error'][] = 'El campo email es obligatorio.';
@@ -223,9 +230,9 @@ class User extends ActiveRecord
     /**
      * Method responsible for password validation.
      *
-     * @return string Returns an alert if something went wrong with the validation.
+     * @return array Returns an array of alerts if something went wrong with the validation.
      */
-    public function validatePassword()
+    public function validatePassword(): array
     {
         if (!$this->password) {
             self::$alerts['error'][] = 'El campo contraseña no puede ir vacío.';
