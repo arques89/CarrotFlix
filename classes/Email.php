@@ -48,7 +48,7 @@ class Email
         $content .= '<li>Nombre: ' . $this->name . ' ' . $this->surname . '</li>';
         $content .= '<li>Correo electrónico: ' . $this->email . '</li>';
         $content .= '</ul>';
-        $content .= '<p>Estamos emocionados de tenerte con nosotros. Para comenzar a disfrutar de todos nuestros servicios, simplemente inicia sesión con tu nombre de usuario y la contraseña que elegiste durante el registro.</p>';
+        $content .= '<p>Estamos emocionados de tenerte con nosotros. Para comenzar a disfrutar de todos nuestros servicios, simplemente inicia sesión con tu email y la contraseña que elegiste durante el registro.</p>';
         $content .= '<p>Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con nuestro equipo de soporte a través de <a href="mailto:help@carrotflix.com">help@carrotflix.com</a>.</p>';
         $content .= '<p>Atentamente,</p>';
         $content .= '<p>Equipo de CarrotFlix.</p>';
