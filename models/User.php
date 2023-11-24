@@ -248,9 +248,14 @@ class User extends ActiveRecord
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
 
-    // Comprobar el password
+    /**
+     * Validates the authenticity of a password.
+     *
+     * @return bool Returns true if the password is valid; otherwise, returns false.
+     */
     public function checkPassword(): bool
     {
         return password_verify($this->current_password, $this->password);
     }
+
 }
