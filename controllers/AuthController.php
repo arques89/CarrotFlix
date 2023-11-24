@@ -81,7 +81,7 @@ final class AuthController
                 $existeUsuario = User::where('email', $user->getEmail());
 
                 if ($existeUsuario) {
-                    User::setAlert('error', 'El Usuario ya esta registrado');
+                    User::setAlert('error', 'El email utilizado ya esta está en uso.');
                     $alerts = User::getAlerts();
                 } else {
                     // Hashear el password
