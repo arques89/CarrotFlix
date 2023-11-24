@@ -15,7 +15,7 @@ class ActiveRecord
      *
      * @param object $database The database connection object.
      */
-    public static function setDB($database)
+    public static function setDB($database): void
     {
         self::$db = $database;
     }
@@ -26,7 +26,7 @@ class ActiveRecord
      * @param string $type    The type of the alert.
      * @param string $message The message content.
      */
-    public static function setAlert($type, $message)
+    public static function setAlert(string $type, string $message): void
     {
         static::$alerts[$type][] = $message;
     }
@@ -36,7 +36,7 @@ class ActiveRecord
      *
      * @return array Returns an array of alerts.
      */
-    public static function getAlerts()
+    public static function getAlerts(): array
     {
         return static::$alerts;
     }
@@ -46,7 +46,7 @@ class ActiveRecord
      *
      * @return array Returns an empty array for alerts.
      */
-    public function validate()
+    public function validate(): array
     {
         static::$alerts = [];
 
@@ -60,21 +60,21 @@ class ActiveRecord
      *
      * @return array Returns an array of memory objects created from the query results.
      */
-    public static function consultSQL($query)
+    public static function consultSQL(string $query): array
     {
-        // Consultar la base de datos
+        // Consult the database
         $result = self::$db->query($query);
 
-        // Iterar los results
+        // Iterate over the results
         $array = [];
         while ($register = $result->fetch_assoc()) {
             $array[] = static::createObject($register);
         }
 
-        // liberar la memoria
+        // Free up memory
         $result->free();
 
-        // retornar los results
+        // Return the results
         return $array;
     }
 
@@ -85,8 +85,7 @@ class ActiveRecord
      *
      * @return object Returns a memory object.
      */
-    // Crea el objeto en memoria que es igual al de la BD
-    protected static function createObject($register)
+    protected static function createObject(array $register): object
     {
         $object = new static();
 
@@ -104,7 +103,7 @@ class ActiveRecord
      *
      * @return array Returns an array of database attributes.
      */
-    public function attributes()
+    public function attributes(): array
     {
         $attributes = [];
         foreach (static::$columnsDB as $column) {
@@ -120,24 +119,16 @@ class ActiveRecord
     /**
      * Sanitizes data before saving it into the database.
      *
-     * @return array Returns sanitized attributes.
+     * @return array Returns an array containing sanitized attributes.
      */
-    public function sanitizeAttributes()
+    public function sanitizeAttributes(): array
     {
         $attributes = $this->attributes();
         $sanitized = [];
         foreach ($attributes as $key => $value) {
-            // Verificar si $value no es nulo antes de escaparlo
-            if (null !== $value) {
-                $sanitized[$key] = self::$db->escape_string($value);
-            } else {
-                // Manejar el caso cuando $value es nulo
-                // Puede ser asignar un valor por defecto, lanzar una excepción, etc.
-                // Aquí se está asignando una cadena vacía como valor por defecto
-                $sanitized[$key] = '';
-            }
+            // Escapes the value and assigns an empty string if it's null using the ?? (null coalescing) operator
+            $sanitized[$key] = self::$db->escape_string($value ?? '');
         }
-
         return $sanitized;
     }
 
@@ -145,8 +136,9 @@ class ActiveRecord
      * Synchronizes the database with memory objects.
      *
      * @param array $args An array of arguments.
+     * @return void
      */
-    public function synchronizeDB($args = [])
+    public function synchronizeDB(array $args = []): void
     {
         foreach ($args as $key => $value) {
             if (property_exists($this, $key) && !is_null($value)) {
@@ -160,14 +152,14 @@ class ActiveRecord
      *
      * @return mixed Returns the result of the save operation.
      */
-    public function save()
+    public function save(): mixed
     {
         $result = '';
         if (!is_null($this->id)) {
-            // update
+            // update an existing record
             $result = $this->update();
         } else {
-            // Creando un nuevo register
+            // Creating a new record
             $result = $this->create();
         }
 
@@ -179,7 +171,7 @@ class ActiveRecord
      *
      * @return array Returns an array of all records from the table.
      */
-    public static function all()
+    public static function all(): array
     {
         $query = 'SELECT * FROM ' . static::$table;
         $result = self::consultSQL($query);
@@ -194,7 +186,7 @@ class ActiveRecord
      *
      * @return mixed|null Returns the record with the specified ID or null if not found.
      */
-    public static function find($id)
+    public static function find(int $id): mixed
     {
         $query = 'SELECT * FROM ' . static::$table . " WHERE id = {$id}";
         $result = self::consultSQL($query);
@@ -210,7 +202,7 @@ class ActiveRecord
      *
      * @return mixed|null Returns the first result of the query or null if no result is found.
      */
-    public static function where($column, $value)
+    public static function where(string $column, mixed $value): mixed
     {
         $query = 'SELECT * FROM ' . static::$table . " WHERE {$column} = '{$value}'";
         $result = self::consultSQL($query);
@@ -225,11 +217,9 @@ class ActiveRecord
      *
      * @return mixed The result of the SQL query.
      */
-    public static function SQL($query)
+    public static function SQL(string $query): mixed
     {
-        $result = self::consultSQL($query);
-
-        return $result;
+        return self::consultSQL($query);
     }
 
     /**
@@ -239,7 +229,7 @@ class ActiveRecord
      *
      * @return mixed|null Returns the first set of records based on the specified limit or null if no records are found.
      */
-    public static function get($limit)
+    public static function get(int $limit): mixed
     {
         $query = 'SELECT * FROM ' . static::$table . " LIMIT {$limit}";
         $result = self::consultSQL($query);
@@ -252,7 +242,7 @@ class ActiveRecord
      *
      * @return array Returns an array with the result of the query and the ID of the newly created record.
      */
-    public function create()
+    public function create(): array
     {
         // Sanitize the data
         $attributes = $this->sanitizeAttributes();
@@ -280,7 +270,7 @@ class ActiveRecord
      *
      * @return bool Returns true if the update operation was successful, otherwise false.
      */
-    public function update()
+    public function update(): bool
     {
         // Sanitize the data
         $attributes = $this->sanitizeAttributes();
@@ -300,7 +290,7 @@ class ActiveRecord
         // Update the database
         $result = self::$db->query($query);
 
-        return $result;
+        return (bool) $result;
     }
 
     /**
@@ -308,11 +298,11 @@ class ActiveRecord
      *
      * @return bool Returns true if the deletion operation was successful, otherwise false.
      */
-    public function delete()
+    public function delete(): bool
     {
         $query = 'DELETE FROM ' . static::$table . ' WHERE id = ' . self::$db->escape_string($this->id) . ' LIMIT 1';
         $result = self::$db->query($query);
 
-        return $result;
+        return (bool) $result;
     }
 }
