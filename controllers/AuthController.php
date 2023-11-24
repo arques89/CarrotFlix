@@ -55,7 +55,7 @@ final class AuthController
         // Render a la vista
         $router->render('auth/login', [
             'title' => 'Iniciar Sesión',
-            'alerts' => $alerts,
+            'alerts' => $alerts
         ]);
     }
 
@@ -81,7 +81,7 @@ final class AuthController
                 $existeUsuario = User::where('email', $user->getEmail());
 
                 if ($existeUsuario) {
-                    User::setAlert('error', 'El Usuario ya esta registrado');
+                    User::setAlert('error', 'El email utilizado ya esta está en uso.');
                     $alerts = User::getAlerts();
                 } else {
                     // Hashear el password
@@ -92,7 +92,7 @@ final class AuthController
                     unset($password2);
 
                     // Generar el Token
-                    $user->createToken();
+                    $user->setToken();
 
                     // Crear un nuevo usuario
                     $resultado = $user->save();
@@ -113,7 +113,7 @@ final class AuthController
         $router->render('auth/register', [
             'title' => 'Crea tu cuenta en CarrotFlix',
             'user' => $user,
-            'alerts' => $alerts,
+            'alerts' => $alerts
         ]);
     }
 
@@ -129,9 +129,9 @@ final class AuthController
                 // Buscar el usuario
                 $user = User::where('email', $user->getEmail());
 
-                if ($user && $user->confirmed) {
+                if ($user && $user->getConfirmed()) {
                     // Generar un nuevo token
-                    $user->createToken();
+                    $user->setToken();
                     $password2 = $user->getPassword2();
                     unset($password2);
 
@@ -139,13 +139,13 @@ final class AuthController
                     $user->save();
 
                     // Enviar el email
-                    $email = new Email($user->getEmail(), $user->getName(), $user->token);
+                    $email = new Email($user->getEmail(), $user->getName(), $user->getSurname(), $user->getToken());
                     $email->sendInstructions();
 
                     // Imprimir la alerta
-                    // User::setAlert('exito', 'Hemos enviado las instrucciones a tu email');
+                    // User::setAlert('exito', '¡Te hemos enviado un email con las instrucciones para restablecer tu contraseña!');
 
-                    $alerts['exito'][] = 'Hemos enviado las instrucciones a tu email';
+                    $alerts['exito'][] = '¡Te hemos enviado un email con las instrucciones para restablecer tu contraseña!';
                 } else {
                     // User::setAlert('error', 'El Usuario no existe o no esta confirmado');
 
@@ -157,14 +157,66 @@ final class AuthController
         // Render a la vista
         $router->render('auth/reset-password', [
             'title' => '¿Olvidaste tu contraseña?',
+            'alerts' => $alerts
+        ]);
+    }
+
+    public static function newPassword(Router $router)
+    {
+        $token = s($_GET['token']);
+
+        $valid_token = true;
+
+        if (!$token) {
+            header('Location: /');
+        }
+
+        // Identificar el usuario con este token
+        $user = User::where('token', $token);
+
+        if (empty($user)) {
+            User::setAlert('error', 'Token No Válido, inténtalo de nuevo');
+            $valid_token = false;
+        }
+
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
+            // Añadir el nuevo password
+            $user->synchronizeDB($_POST);
+
+            // Validar el password
+            $alerts = $user->validatePassword();
+
+            if (empty($alerts)) {
+                // Hashear el nuevo password
+                $user->hashPassword();
+
+                // Eliminar el Token
+                $user->clearToken();
+
+                // Guardar el usuario en la BD
+                $resultado = $user->save();
+
+                // Redireccionar
+                if ($resultado) {
+                    header('Location: /login');
+                }
+            }
+        }
+
+        $alerts = User::getAlerts();
+
+        // Muestra la vista
+        $router->render('auth/new-password', [
+            'title' => 'Nueva contraseña',
             'alerts' => $alerts,
+            'valid_token' => $valid_token
         ]);
     }
 
     public static function message(Router $router)
     {
         $router->render('auth/message', [
-            'title' => 'Cuenta creada satisfactoriamente',
+            'title' => 'Cuenta creada satisfactoriamente'
         ]);
     }
 
@@ -187,8 +239,8 @@ final class AuthController
             );
         } else {
             // Confirmar la cuenta
-            $user->setConfirmed(1);
-            $user->setToken("");
+            $user->setConfirmed();
+            $user->clearToken();
             $password2 = $user->getPassword2();
             unset($password2);
 
@@ -200,7 +252,7 @@ final class AuthController
 
         $router->render('auth/confirm', [
             'title' => 'Confirma tu cuenta',
-            'alerts' => User::getAlerts(),
+            'alerts' => User::getAlerts()
         ]);
     }
 }

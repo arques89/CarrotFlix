@@ -24,6 +24,10 @@ $router->post('/register', [AuthController::class, 'register']);
 $router->get('/reset-password', [AuthController::class, 'resetPassword']);
 $router->post('/reset-password', [AuthController::class, 'resetPassword']);
 
+// Set a new password
+$router->get('/new-password', [AuthController::class, 'newPassword']);
+$router->post('/new-password', [AuthController::class, 'newPassword']);
+
 // Confirmación register
 $router->get('/message', [AuthController::class, 'message']);
 $router->get('/confirm-account', [AuthController::class, 'confirmAccount']);

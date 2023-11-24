@@ -31,147 +31,230 @@ class User extends ActiveRecord
     }
 
     /** GETTERS **/
-    public function getId() {
+    /**
+     * Gets the id of user object.
+     *
+     * @return int Returns the id of user object.
+     */
+    public function getId()
+    {
         return $this->id;
     }
-    public function getName() {
+
+    /**
+     * Gets the name of user object.
+     *
+     * @return string Returns the name of user object.
+     */
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getSurname() {
+    /**
+     * Gets the surname of user object.
+     *
+     * @return string Returns the surname of user object.
+     */
+    public function getSurname()
+    {
         return $this->surname;
     }
 
-    public function getEmail() {
+    /**
+     * Gets the email of user object.
+     *
+     * @return string Returns the email of user object.
+     */
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getPassword() {
+    /**
+     * Gets the password of user object.
+     *
+     * @return string Returns the password of user object.
+     */
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    public function getPassword2() {
+    /**
+     * Gets the re typed password of user object.
+     *
+     * @return string Returns the re typed password of user object.
+     */
+    public function getPassword2()
+    {
         return $this->password2;
     }
 
-    public function getConfirmed() {
+    /**
+     * Gets the state of confirmed of user object.
+     *
+     * @return int Returns the state of confirmed of user object.
+     */
+    public function getConfirmed()
+    {
         return $this->confirmed;
     }
 
-    public function getToken() {
+    /**
+     * Gets the token of user object.
+     *
+     * @return string Returns the token of user object.
+     */
+    public function getToken()
+    {
         return $this->token;
     }
 
-    public function getIsAdmin() {
+    /**
+     * Gets the state is isAdmin of user object.
+     *
+     * @return int Returns the state is isAdmin of user object.
+     */
+    public function getIsAdmin()
+    {
         return $this->isAdmin;
     }
 
-     /** SETTERS **/
-    public function setConfirmed($confirmed) {
-        $this->confirmed = $confirmed;
+    /** SETTERS **/
+    /**
+     * Sets the confirmation status of user object.
+     *
+     * This method sets the confirmation status of the user object to 1, indicating confirmation.
+     */
+    public function setConfirmed(): void
+    {
+        $this->confirmed = 1;
     }
 
-    public function setToken($token) {
+    /**
+     * Sets the token of user object.
+     *
+     * This method generates a token of length 16 using random bytes and assigns it to the token property.
+     */
+    public function setToken(): void
+    {
+        $length = 16;
+        $token = bin2hex(random_bytes($length));
         $this->token = $token;
     }
 
+    /**
+     * Clear the token of user object.
+     */
+    public function clearToken(): void
+    {
+        $this->token = null;
+    }
 
-    // validate el Login de Usuarios
-    public function validateLogin()
+    /**
+     * Method responsible for login validation.
+     *
+     * @return array Returns an array of alerts if something went wrong with the validation.
+     */
+    public function validateLogin(): array
     {
         if (!$this->email) {
-            self::$alerts['error'][] = 'El Email del Usuario es Obligatorio';
+            self::$alerts['error'][] = 'El email del usuario es obligatorio.';
         }
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            self::$alerts['error'][] = 'Email no válido';
+            self::$alerts['error'][] = 'El email introducido no es válido.';
         }
-        if (!$this->password) {
-            self::$alerts['error'][] = 'El Password no puede ir vacio';
-        }
+        $this->validatePassword();
 
         return self::$alerts;
     }
 
-    // Validación para cuentas nuevas
-    public function validateAccount()
+    /**
+     * Validates specific fields for emptiness.
+     *
+     * @param array $fields An associative array where keys are field names and values are error messages.
+     */
+    public function validateAccountFields(array $fields): void
     {
-        if (!$this->name) {
-            self::$alerts['error'][] = 'El nombre es obligatorio';
+        foreach ($fields as $field => $errorMessage) {
+            if (empty($this->$field)) {
+                self::$alerts['error'][] = $errorMessage;
+            }
         }
-        if (!$this->surname) {
-            self::$alerts['error'][] = 'El apellido es obligatorio';
-        }
-        if (!$this->email) {
-            self::$alerts['error'][] = 'El email es obligatorio';
-        }
-        if (!$this->password) {
-            self::$alerts['error'][] = 'El password no puede ir vacío';
-        }
-        if (strlen($this->password) < 6) {
-            self::$alerts['error'][] = 'El password debe contener al menos 6 caracteres';
-        }
-        if ($this->password !== $this->password2) {
-            self::$alerts['error'][] = 'Los password son diferentes';
-        }
+    }
+
+    /**
+     * Method responsible for new accounts creation validation.
+     *
+     * @return array Returns an array of alerts if something went wrong with the validation.
+     */
+    public function validateAccount(): array
+    {
+        $fieldsToValidate = [
+            'name' => 'El campo nombre es obligatorio.',
+            'surname' => 'El campo apellido es obligatorio.',
+            'email' => 'El campo email es obligatorio.'
+        ];
+
+        $this->validateAccountFields($fieldsToValidate);
+        $this->validatePassword();
 
         return self::$alerts;
     }
 
-    // Valida un email
-    public function validateEmail()
+    /**
+     * Method responsible for email validation.
+     *
+     * @return array Returns an array of alerts if something went wrong with the validation.
+     */
+    public function validateEmail(): array
     {
         if (!$this->email) {
-            self::$alerts['error'][] = 'El Email es obligatorio';
+            self::$alerts['error'][] = 'El campo email es obligatorio.';
         }
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            self::$alerts['error'][] = 'Email no válido';
+            self::$alerts['error'][] = 'El email introducido no es válido.';
         }
 
         return self::$alerts;
     }
 
-    // Valida el Password
-    public function validatePassword()
+    /**
+     * Method responsible for password validation.
+     *
+     * @return array Returns an array of alerts if something went wrong with the validation.
+     */
+    public function validatePassword(): array
     {
         if (!$this->password) {
-            self::$alerts['error'][] = 'El Password no puede ir vacio';
-        }
-        if (strlen($this->password) < 6) {
-            self::$alerts['error'][] = 'El password debe contener al menos 6 caracteres';
+            self::$alerts['error'][] = 'El campo contraseña no puede ir vacío.';
+        } elseif (strlen($this->password) < 6) {
+            self::$alerts['error'][] = 'La contraseña ha de contener al menos 6 caracteres.';
+        } elseif ($this->password !== $this->password2) {
+            self::$alerts['error'][] = 'Las contraseñas introducidas son diferentes.';
         }
 
         return self::$alerts;
     }
 
-    /*  public function newPassword(): array
-    {
-        if (!$this->current_password) {
-            self::$alerts['error'][] = 'El Password Actual no puede ir vacio';
-        }
-        if (!$this->password_nuevo) {
-            self::$alerts['error'][] = 'El Password Nuevo no puede ir vacio';
-        }
-        if (strlen($this->password_nuevo) < 6) {
-            self::$alerts['error'][] = 'El Password debe contener al menos 6 caracteres';
-        }
-        return self::$alerts;
-    } */
-
-    // Comprobar el password
-    /*     public function checkPassword(): bool
-    {
-        return password_verify($this->current_password, $this->password);
-    } */
-
-    // Hashea el password
+    /**
+     * Method responsible for hashing password for user object.
+     *
+     * @return void Set a hashed password for user object.
+     */
     public function hashPassword(): void
     {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
 
-    // Generar un Token
-    public function createToken(): void
+    /**
+     * Validates the authenticity of a password.
+     *
+     * @return bool Returns true if the password is valid; otherwise, returns false.
+     */
+    public function checkPassword(): bool
     {
-        $this->token = uniqid();
+        return password_verify($this->current_password, $this->password);
     }
 }

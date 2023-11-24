@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(40) DEFAULT NULL,
   `password` varchar(60) DEFAULT NULL,
   `confirmed` tinyint(1) DEFAULT NULL,
-  `token` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `token` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `isAdmin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
