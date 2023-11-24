@@ -160,13 +160,13 @@ class User extends ActiveRecord
     public function validateLogin()
     {
         if (!$this->email) {
-            self::$alerts['error'][] = 'El Email del Usuario es Obligatorio';
+            self::$alerts['error'][] = 'El email del usuario es obligatorio.';
         }
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            self::$alerts['error'][] = 'Email no válido';
+            self::$alerts['error'][] = 'El email introducido no es válido.';
         }
         if (!$this->password) {
-            self::$alerts['error'][] = 'El Password no puede ir vacio';
+            self::$alerts['error'][] = 'Ha de informar una contraseña.';
         }
 
         return self::$alerts;
@@ -180,22 +180,22 @@ class User extends ActiveRecord
     public function validateAccount()
     {
         if (!$this->name) {
-            self::$alerts['error'][] = 'El nombre es obligatorio';
+            self::$alerts['error'][] = 'El campo nombre es obligatorio.';
         }
         if (!$this->surname) {
-            self::$alerts['error'][] = 'El apellido es obligatorio';
+            self::$alerts['error'][] = 'El campo apellido es obligatorio.';
         }
         if (!$this->email) {
-            self::$alerts['error'][] = 'El email es obligatorio';
+            self::$alerts['error'][] = 'El campo email es obligatorio.';
         }
         if (!$this->password) {
-            self::$alerts['error'][] = 'El password no puede ir vacío';
+            self::$alerts['error'][] = 'El campo contraseña no puede ir vacío.';
         }
         if (strlen($this->password) < 6) {
-            self::$alerts['error'][] = 'El password debe contener al menos 6 caracteres';
+            self::$alerts['error'][] = 'El campo contraseña debe contener al menos 6 caracteres.';
         }
         if ($this->password !== $this->password2) {
-            self::$alerts['error'][] = 'Los password son diferentes';
+            self::$alerts['error'][] = 'Las contraseñas introducidas son diferentes.';
         }
 
         return self::$alerts;
@@ -209,10 +209,10 @@ class User extends ActiveRecord
     public function validateEmail()
     {
         if (!$this->email) {
-            self::$alerts['error'][] = 'El Email es obligatorio';
+            self::$alerts['error'][] = 'El campo email es obligatorio.';
         }
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            self::$alerts['error'][] = 'Email no válido';
+            self::$alerts['error'][] = 'El email introducido no es válido.';
         }
 
         return self::$alerts;
@@ -226,10 +226,10 @@ class User extends ActiveRecord
     public function validatePassword()
     {
         if (!$this->password) {
-            self::$alerts['error'][] = 'El Password no puede ir vacio';
+            self::$alerts['error'][] = 'El campo contraseña no puede ir vacío.';
         }
         if (strlen($this->password) < 6) {
-            self::$alerts['error'][] = 'El password debe contener al menos 6 caracteres';
+            self::$alerts['error'][] = 'El campo contraseña debe contener al menos 6 caracteres.';
         }
 
         return self::$alerts;
