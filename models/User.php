@@ -137,7 +137,9 @@ class User extends ActiveRecord
      */
     public function setToken(): void
     {
-        $this->token = uniqid();
+        $length = 16;
+        $token = bin2hex(random_bytes($length));
+        $this->token = $token;
     }
 
     /**
@@ -245,21 +247,21 @@ class User extends ActiveRecord
 
     /*  public function newPassword(): array
     {
-        if (!$this->current_password) {
-            self::$alerts['error'][] = 'El Password Actual no puede ir vacio';
-        }
-        if (!$this->password_nuevo) {
-            self::$alerts['error'][] = 'El Password Nuevo no puede ir vacio';
-        }
-        if (strlen($this->password_nuevo) < 6) {
-            self::$alerts['error'][] = 'El Password debe contener al menos 6 caracteres';
-        }
-        return self::$alerts;
+    if (!$this->current_password) {
+    self::$alerts['error'][] = 'El Password Actual no puede ir vacio';
+    }
+    if (!$this->password_nuevo) {
+    self::$alerts['error'][] = 'El Password Nuevo no puede ir vacio';
+    }
+    if (strlen($this->password_nuevo) < 6) {
+    self::$alerts['error'][] = 'El Password debe contener al menos 6 caracteres';
+    }
+    return self::$alerts;
     } */
 
     // Comprobar el password
     /*     public function checkPassword(): bool
-    {
-        return password_verify($this->current_password, $this->password);
-    } */
+{
+return password_verify($this->current_password, $this->password);
+} */
 }
