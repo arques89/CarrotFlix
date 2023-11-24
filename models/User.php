@@ -171,21 +171,33 @@ class User extends ActiveRecord
     }
 
     /**
+     * Validates specific fields for emptiness.
+     *
+     * @param array $fields An associative array where keys are field names and values are error messages.
+     */
+    public function validateAccountFields(array $fields)
+    {
+        foreach ($fields as $field => $errorMessage) {
+            if (empty($this->$field)) {
+                self::$alerts['error'][] = $errorMessage;
+            }
+        }
+    }
+
+    /**
      * Method responsible for new accounts creation validation.
      *
-     * @return string Returns an alert if something went wrong with the validation.
+     * @return array Returns an alert array if something went wrong with the validation.
      */
     public function validateAccount()
     {
-        if (!$this->name) {
-            self::$alerts['error'][] = 'El campo nombre es obligatorio.';
-        }
-        if (!$this->surname) {
-            self::$alerts['error'][] = 'El campo apellido es obligatorio.';
-        }
-        if (!$this->email) {
-            self::$alerts['error'][] = 'El campo email es obligatorio.';
-        }
+        $fieldsToValidate = [
+            'name' => 'El campo nombre es obligatorio.',
+            'surname' => 'El campo apellido es obligatorio.',
+            'email' => 'El campo email es obligatorio.'
+        ];
+
+        $this->validateAccountFields($fieldsToValidate);
         $this->validatePassword();
 
         return self::$alerts;
@@ -236,15 +248,9 @@ class User extends ActiveRecord
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
 
-    /*  public function newPassword(): array
-    {
-    $this->validatePassword();
-    return self::$alerts;
-    } */
-
     // Comprobar el password
-    /* public function checkPassword(): bool
-{
-return password_verify($this->current_password, $this->password);
-} */
+    public function checkPassword(): bool
+    {
+        return password_verify($this->current_password, $this->password);
+    }
 }
