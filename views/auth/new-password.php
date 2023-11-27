@@ -11,6 +11,8 @@
             <div class="formulario__campo">
                 <label for="password" class="formulario__label">Nueva contraseña</label>
                 <input type="password" class="formulario__input" placeholder="Su nueva contraseña" id="password" name="password">
+                <label for="password2" class="formulario__label">Repita contraseña</label>
+                <input type="password" class="formulario__input" placeholder="Repita su nueva contraseña" id="password2" name="password2">
             </div>
 
             <input type="submit" class="formulario__submit" value="Guardar contraseña" />

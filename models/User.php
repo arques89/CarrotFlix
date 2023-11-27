@@ -233,7 +233,7 @@ class User extends ActiveRecord
             self::$alerts['error'][] = 'El campo contraseña no puede ir vacío.';
         } elseif (strlen($this->password) < 6) {
             self::$alerts['error'][] = 'La contraseña ha de contener al menos 6 caracteres.';
-        } elseif ($this->password !== $this->password2) {
+        } elseif (!empty($this->password2) && $this->password !== $this->password2) {
             self::$alerts['error'][] = 'Las contraseñas introducidas son diferentes.';
         }
 
