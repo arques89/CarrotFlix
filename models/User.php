@@ -14,6 +14,8 @@ class User extends ActiveRecord
     protected $password;
     protected $password2;
     protected $confirmed;
+    protected $current_password;
+    protected $new_password;
     protected $token;
     protected $isAdmin;
 
@@ -235,6 +237,26 @@ class User extends ActiveRecord
             self::$alerts['error'][] = 'Las contraseñas introducidas son diferentes.';
         }
 
+        return self::$alerts;
+    }
+
+    /**
+     * Sets a new password for the user.
+     *
+     * @return array Returns an array of alerts. If there are any errors during password setting,
+     *               they will be stored in the 'error' key of the alerts array.
+     */
+    public function setNewPassword(): array
+    {
+        if (!$this->current_password) {
+            self::$alerts['error'][] = 'La contraseña actual no puede ir vacía.';
+        }
+        if (!$this->new_password) {
+            self::$alerts['error'][] = 'La nueva contraseña no puede ir vacía';
+        }
+        if (strlen($this->new_password) < 6) {
+            self::$alerts['error'][] = 'La contraseña debe contener al menos 6 caracteres';
+        }
         return self::$alerts;
     }
 

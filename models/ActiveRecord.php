@@ -15,7 +15,7 @@ class ActiveRecord
      *
      * @param object $database The database connection object.
      */
-    public static function setDB($database): void
+    public static function setDatabaseConnection($database): void
     {
         self::$db = $database;
     }
@@ -38,18 +38,6 @@ class ActiveRecord
      */
     public static function getAlerts(): array
     {
-        return static::$alerts;
-    }
-
-    /**
-     * Clears validation alerts.
-     *
-     * @return array Returns an empty array for alerts.
-     */
-    public function validate(): array
-    {
-        static::$alerts = [];
-
         return static::$alerts;
     }
 
