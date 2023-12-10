@@ -14,9 +14,13 @@
   - En la carpeta /includes crear el fichero `.env` y añadir conexión con la base de datos en local.
 
   > [!IMPORTANT]
+
   > DB_HOST=your server
+
   > DB_USER=db user
+
   > DB_PASS=db password
+
   > DB_NAME=db name
 
 4. `Cargando tablas en DB`
