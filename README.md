@@ -103,10 +103,6 @@ Explain how to use the project once it's set up. Provide examples and usage scen
 
 5. Open a pull request to the `main` branch of the original repository.
 
-### Code of Conduct
-
-Please note that we have a Code of Conduct in place to ensure a welcoming and inclusive community. Please review and adhere to it in all interactions within the project.
-
 ### Contribution Guidelines
 
 -   Ensure your code follows the project's coding style and conventions.
