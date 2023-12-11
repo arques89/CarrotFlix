@@ -83,13 +83,24 @@ Explain how to use the project once it's set up. Provide examples and usage scen
 
 1. Fork the repository.
 2. Clone your forked repository to your local machine:
-    > git clone https://github.com/your-username/CarrotFlix.git
+    ```
+    git clone https://github.com/your-username/CarrotFlix.git
+    ```
 3. Create a new branch for your feature or bug fix:
-    > git checkout -b feature-new-feature
+    ```
+    git checkout -b feature-new-feature
+    ```
 4. Make your changes, commit them, and push to your fork:
-    > git add .
-    > git commit -m "Description of changes"
-    > git push origin feature-new-feature
+    ```
+    git add .
+    ```
+    ```
+    git commit -m "Description of changes"
+    ```
+    ```
+    git push origin feature-new-feature
+    ```
+
 5. Open a pull request to the `main` branch of the original repository.
 
 ### Code of Conduct
