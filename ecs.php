@@ -17,4 +17,5 @@ return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->dynamicSets(['@Symfony']);
 };
 
+// composer require symplify/easy-coding-standard --dev
 // Run it: vendor/bin/ecs check controllers
