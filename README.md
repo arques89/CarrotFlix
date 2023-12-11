@@ -1,7 +1,8 @@
 # CarrotFlix
 
 ### Getting Started 🌟
-1. `Clonar repositorio` 
+1. `Clonar repositorio`
+  > [!NOTE]
   > git clone https://github.com/arques89/CarrotFlix.git
 
 2. `Descarga dependencias`
