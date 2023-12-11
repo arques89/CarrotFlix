@@ -4,7 +4,6 @@
 
 CarrotFlix is a project designed to serve streaming movies, providing a platform for users to access and watch movies online.
 
-
 ## Table of Contents
 
 -   [Getting Started](#getting-started)
@@ -24,13 +23,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 Before you begin, ensure you have the following installed:
 
-- Git: [Installation Guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- Composer: [Installation Guide](https://getcomposer.org/doc/00-intro.md)
-- PHP (with server capabilities)
-  - For Windows: [Installation Guide](https://www.php.net/manual/en/install.windows.php)
-  - For macOS: [Installation Guide](https://www.php.net/manual/en/install.macosx.php)
-  - For Linux: [Installation Guide](https://www.php.net/manual/en/install.unix.php)
-
+-   Git: [Installation Guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+-   Composer: [Installation Guide](https://getcomposer.org/doc/00-intro.md)
+-   PHP (with server capabilities)
+    -   For Windows: [Installation Guide](https://www.php.net/manual/en/install.windows.php)
+    -   For macOS: [Installation Guide](https://www.php.net/manual/en/install.macosx.php)
+    -   For Linux: [Installation Guide](https://www.php.net/manual/en/install.unix.php)
 
 ### Installation
 
@@ -91,12 +89,15 @@ Explain how to use the project once it's set up. Provide examples and usage scen
     git checkout -b feature-new-feature
     ```
 4. Make your changes, commit them, and push to your fork:
+
     ```
     git add .
     ```
+
     ```
     git commit -m "Description of changes"
     ```
+
     ```
     git push origin feature-new-feature
     ```
@@ -115,22 +116,3 @@ Thank you for considering contributing to CarrotFlix! We appreciate your time an
 ## License
 
 This project is licensed under the [GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.html) - see the [LICENSE](LICENSE) file for details.
-
-### Estructura app
-
-INICIO          LOGIN ----------->
-  |               |               |
-  |               |               |
-  |               |               |
-  ----------> REGISTER            |
-                                  |
-   ---->404 NOT FOUND             |
-                                  |
-                                  |
-                                  |
-                                  |
-      ----- CATALOGO <----- RECOMENDACIONES
-      |
-      |
-      |
-      | PANTALLA / PLAYER
