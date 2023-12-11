@@ -163,7 +163,7 @@ final class AuthController
 
     public static function newPassword(Router $router)
     {
-        $token = s($_GET['token']);
+        $token = sanitize($_GET['token']);
 
         $valid_token = true;
 
@@ -222,7 +222,7 @@ final class AuthController
 
     public static function confirmAccount(Router $router)
     {
-        $token = s($_GET['token']);
+        $token = sanitize($_GET['token']);
 
         if (!$token) {
             header('Location: /');
