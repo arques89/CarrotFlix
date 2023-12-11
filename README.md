@@ -1,5 +1,8 @@
 # CarrotFlix
 
+> [!WARNING]
+> This repository is currently for educational purposes only.
+
 ## Description
 
 CarrotFlix is a project designed to serve streaming movies, providing a platform for users to access and watch movies online.
