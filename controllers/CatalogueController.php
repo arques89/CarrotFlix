@@ -12,16 +12,14 @@ final class CatalogueController
     public static function browse(Router $router)
     {
 
-        $movie = new Movie();
-        debug($movie->all());
+        $movieObj = new Movie();
+        $movies = $movieObj->all();
         $alerts = [];
 
-        if ('POST' === $_SERVER['REQUEST_METHOD']) {
-            $alerts = [];
-        }
         // Render a la vista
         $router->render('catalogue/browse', [
             'title' => 'Catálogo',
+            'movies' => $movies,
             'alerts' => $alerts
         ]);
     }

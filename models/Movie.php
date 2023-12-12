@@ -53,6 +53,16 @@ class Movie extends ActiveRecord
     }
 
     /**
+     * Obtiene el título de la película.
+     *
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
      * Obtiene el director de la película.
      *
      * @return string
