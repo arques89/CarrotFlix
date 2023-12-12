@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE TABLE `catalogue` (
+CREATE TABLE IF NOT EXISTS `catalogue` (
   `id` int NOT NULL,
   `title` varchar(64) DEFAULT NULL,
   `director` varchar(45) DEFAULT NULL,
