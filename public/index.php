@@ -35,6 +35,7 @@ $router->get('/confirm-account', [AuthController::class, 'confirmAccount']);
 
 // Catalogue
 $router->get('/browse', [CatalogueController::class, 'browse']);
+$router->post('/browse', [CatalogueController::class, 'browse']);
 
 // Página 404
 $router->get('/404', [PagesController::class, 'error']);

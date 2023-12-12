@@ -10,9 +10,16 @@ final class CatalogueController
 {
     public static function browse(Router $router)
     {
+
+        $alerts = [];
+
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
+            $alerts = [];
+        }
         // Render a la vista
         $router->render('catalogue/browse', [
-            'title' => 'Catálogo'
+            'title' => 'Catálogo',
+            'alerts' => $alerts
         ]);
     }
 }
