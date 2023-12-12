@@ -17,12 +17,13 @@ $basePath = dirname(__FILE__); // Obtiene la ruta absoluta del archivo actual
         <h1>Catálogo de Películas</h1>
         <div class="row">
             <?php foreach ($movies as $movie) { ?>
-                <div class="col-md-2">
-                    <div class="card movie-card">
-                        <a href=""><img class="card-img-top" srcset="media/<?php echo $movie->getImage(); ?>" alt="<?php echo $movie->getTitle(); ?>"></a>
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $movie->getTitle(); ?></h5>
-                        </div>
+
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" srcset="media/<?php echo $movie->getImage(); ?>" alt="<?php echo $movie->getTitle(); ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $movie->getTitle(); ?></h5>
+                        <p class="card-text"><?php $movie->getSynopsis(); ?></p>
+                        <a href="#" class="btn btn-primary">Ver película</a>
                     </div>
                 </div>
             <?php } ?>
