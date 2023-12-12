@@ -21,11 +21,11 @@ $basePath = dirname(__FILE__); // Obtiene la ruta absoluta del archivo actual
                 <div class="card" style="width: 18rem;">
                     <a href="#">
                         <img class="card-img-top" srcset="media/<?php echo $movie->getImage(); ?>" alt="<?php echo $movie->getTitle(); ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $movie->getTitle(); ?></h5>
-                            <p class="card-text"><?php $movie->getSynopsis(); ?></p>
-                        </div>
                     </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $movie->getTitle(); ?></h5>
+                    </div>
+
                 </div>
 
             <?php } ?>
