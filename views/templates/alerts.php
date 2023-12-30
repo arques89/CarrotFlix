@@ -6,5 +6,5 @@ foreach ($alerts as $key => $mensajes) {
             <?php echo $mensaje; ?>
         </div>
 <?php
-    }
+}
 }
