@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace Controllers;
 
@@ -11,7 +11,6 @@ final class CatalogueController
 {
     public static function browse(Router $router)
     {
-
         $movieObj = new Movie();
         $movies = $movieObj->all();
         $alerts = [];
