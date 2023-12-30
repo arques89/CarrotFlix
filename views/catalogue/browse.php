@@ -16,7 +16,7 @@ $basePath = dirname(__FILE__); // Obtiene la ruta absoluta del archivo actual
     <div class="container">
         <h1>Catálogo de Películas</h1>
         <div class="row">
-            <?php foreach ($movies as $movie) { ?>
+            <?php foreach ($movies as $movie) {?>
 
                 <div class="card" style="width: 18rem;">
                     <a href="#">
@@ -28,7 +28,7 @@ $basePath = dirname(__FILE__); // Obtiene la ruta absoluta del archivo actual
 
                 </div>
 
-            <?php } ?>
+            <?php }?>
         </div>
     </div>
 </body>
