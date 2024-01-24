@@ -1,13 +1,13 @@
-fecha;titulo;descripcion;director;año
-agosto 3, 2018;Al fin solos;Gran musical con Fred Astaire y Artie Shaw, uno de los grandes directores de orquesta de baile de la época.;H.C. Potter;1940
-agosto 3, 2018;Bodas reales;Fred Astaire bailando hasta por los techos, un clásico de los musicales de todos los tiempos.;Stanley Donen;1951
-agosto 3, 2018;Camino a Bali;Bob Hope y Bing Crosby en una de sus locas comedia de la serie "Camino a...", música, crítica social y humor negro.;Hal Walker;1952
-agosto 3, 2018;Charada;Cary Grant, Audrey Hepburn, Walter Matthau, que más se puede decir. Intriga, crimen y comedia todo en uno.;Stanley Donen;1963;
-agosto 3, 2018;El ángel y el pistolero;Clásico de la época dorada de John Wayne, indispensable para los amantes del western.;James Edward Grant;1947
-agosto 3, 2018;El extraño;Orson Welles y Edward G. Robinson dos grandes figuras del cine negro en una obra maestra.;Orson Welles;1946
-febrero 13, 2019;El extraño amor de Martha Ivers;Cine negro repleto de grandes estrella desde Barbara Stanwyck hasta Kirk Douglas.;Lewis Milestone;1946
-febrero 13, 2019;El forajido;Uno de los westerns dirigido por el excéntrico Howard Hughes contando parte de la historia de Billy el niño.;Howard Hughes;1943
-agosto 3, 2018;El hombre del brazo de oro;Obra destacada del cine negro de la mano de Frank Sinatra, y Kim Novak, con las ilustraciones de Saul Bass en los créditos.;Otto Preminger;1955
-febrero 13, 2019;El sureño;Jean Renoir en una de sus obras de su periodo estadounidense, drama en el entorno rural americano.;Jean Renoir; 1945;
-febrero 13, 2019;El tercer hombre;Orson Welles en una de las obras míticas de la intriga y el cine negro, con esa música de mandolina inolvidable.;Carol Reed; 1949
-febrero 13, 2019;Estación Termini;Obra maestra de Vittorio De Sica, un film de corta duración pero de una tremenda intensidad dramática;Vittorio De Sica; 1953
+title;director;year;genre;synopsis;rating;cast;language;image
+"Al fin solos";"H.C. Potter";"1940";"";"Gran musical con Fred Astaire y Artie Shaw, uno de los grandes directores de orquesta de baile de la época.";"";"";"";""
+"Bodas reales";"Stanley Donen";"1951";"";"Fred Astaire bailando hasta por los techos, un clásico de los musicales de todos los tiempos.";"";"";"";""
+"Camino a Bali";"Hal Walker";"1952";"";"Bob Hope y Bing Crosby en una de sus locas comedia de la serie 'Camino a...', música, crítica social y humor negro.";"";"";"";""
+"Charada";"Stanley Donen";"1963";"";"Cary Grant, Audrey Hepburn, Walter Matthau, que más se puede decir. Intriga, crimen y comedia todo en uno.";"";"";"";""
+"El ángel y el pistolero";"1947";"";"James Edward Grant;Clásico de la época dorada de John Wayne, indispensable para los amantes del western.";"";"";"";""
+"El extraño;Orson Welles";"1946";"";"Orson Welles y Edward G. Robinson dos grandes figuras del cine negro en una obra maestra.";"";"";"";""
+"El extraño amor de Martha Ivers;"Lewis Milestone";"1946";"";"Cine negro repleto de grandes estrella desde Barbara Stanwyck hasta Kirk Douglas.";"";"";"";""
+"El forajido;Howard Hughes";"1943";"";"Uno de los westerns dirigido por el excéntrico Howard Hughes contando parte de la historia de Billy el niño.";"";"";"";""
+"El hombre del brazo de oro";"Otto Preminger";"1955";"";"Obra destacada del cine negro de la mano de Frank Sinatra, y Kim Novak, con las ilustraciones de Saul Bass en los créditos.";"";"";"";""
+"El sureño;Jean Renoir;1945";"";"Jean Renoir en una de sus obras de su periodo estadounidense, drama en el entorno rural americano.";"";"";"";""
+"El tercer hombre;Carol Reed";"1949";"";"Orson Welles en una de las obras míticas de la intriga y el cine negro, con esa música de mandolina inolvidable.";"";"";"";""
+"Estación Termini";"Vittorio De Sica";"1953";"";"Obra maestra de Vittorio De Sica, un film de corta duración pero de una tremenda intensidad dramática.";"";"";"";""
