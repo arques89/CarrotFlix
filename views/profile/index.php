@@ -14,13 +14,15 @@
                         <h4 class="card-title">Usuario: <?php echo $user->getName() . " " . $user->getSurname() ?></h4>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item text-secondary">Correo Electrónico: <?php echo $user->getEmail() ?></li>
-                            <li class="list-group-item">
-                                <form action="/procesaCSV" method="post" enctype="multipart/form-data">
-                                    <label for="csvFile">Selecciona un archivo CSV:</label>
-                                    <input type="file" name="csvFile" id="csvFile" accept=".csv" required>
-                                    <button type="submit" class="btn btn-primary mt-5">Cargar fichero CSV</button>
-                                </form>
-                            </li>
+                            <?php if ($user->getIsAdmin()) { ?>
+                                <li class="list-group-item">
+                                    <form action="/procesaCSV" method="post" enctype="multipart/form-data">
+                                        <label for="csvFile">Selecciona un archivo CSV:</label>
+                                        <input type="file" name="csvFile" id="csvFile" accept=".csv" required>
+                                        <button type="submit" class="btn btn-primary mt-5">Cargar fichero CSV</button>
+                                    </form>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
