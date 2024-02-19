@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 CREATE TABLE IF NOT EXISTS `catalogue` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(128) DEFAULT NULL,
   `director` varchar(64) DEFAULT NULL,
   `year` varchar(45) DEFAULT NULL,
@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `catalogue` (
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 
 
