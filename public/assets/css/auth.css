@@ -1,3 +1,7 @@
+:root {
+    --main-bg-color: #ec5353;
+  }
+  
 /*-----------------------------------------------*/
 /* PAGINA DE LOGIN Y PAGINA DE OLVIDE CONTRASEÑA */
 /*-----------------------------------------------*/
@@ -12,17 +16,89 @@ video {
     height: 100vh;
     object-fit: cover;
 }
-
+footer{
+    height:80px;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    background-color: rgba(34,34,34,0.75);
+    color: var(--main-bg-color);
+}
+.menu-redes{
+    text-align: center;
+    margin-top: -30px;
+}
+.menu-redes__enlace{
+    color: var(--main-bg-color);
+    text-decoration: none;
+    margin: 5px;
+}
+.footer__copyright{
+    text-align: center;
+}
+.footer__grid{
+    height: 30px;
+}
+.footer__contenido{
+    margin-left: 30px;
+    top: 5px;
+    position: relative;
+    font-family: "Pixelify Sans", cursive;
+}
 h1 {
     position: absolute;
-    top: 5%; /* Ajusta la posición vertical según tus necesidades */
+    top: 5%; 
     left: 65%;
     font-family: "Pixelify Sans", cursive;
-    color: #ec5353;
+    color: var(--main-bg-color);
     text-align: center;
     font-size: 100px;
 }
+.imagen-robot{
+    width: 100%;
+    width: 100%;
+    top: 100px;
+}
+.navbar {
+    background-color: rgba(34,34,34,0.75);
+    margin: auto;
+    justify-content: center;
+}
+.icon {
+    margin-top: -7.5px;
+    padding-right: 10px;
+}
+.offcanvas{
+    background-color: rgba(34,34,34,0.35);
 
+}
+.offcanvas-title{
+    margin: auto;
+}
+.offcanvas-header {
+    color: white;
+}
+.offcanvas-body{
+    background-color: rgba(34,34,34,0.75);
+}
+.btn-close{
+    background-color: var(--main-bg-color);
+}
+.header__enlace{
+    color: var(--main-bg-color);
+    text-decoration: none;
+    font-size: 20px;
+}
+.nav-item{
+    margin: auto;
+}
+.navbar-brand {
+    top: 5%;
+    font-family: "Pixelify Sans", cursive;
+    color: var(--main-bg-color);
+    text-align: center;
+    font-size: 22px;
+}
 #contenedor {
     position: absolute;
     top: 45%; /* Ajusta la posición vertical según tus necesidades */
@@ -52,7 +128,7 @@ h1 {
 #login {
     width: 100%;
     padding: 50px 30px;
-    background-color: #ec5353;
+    background-color: var(--main-bg-color);
 
     -webkit-box-shadow: 0px 0px 5px 5px rgba(231, 123, 123, 0.726);
     -moz-box-shadow: 0px 0px 5px 5px rgba(177, 99, 99, 0.788);
@@ -179,7 +255,7 @@ h1 {
 #register {
     width: 100%;
     padding: 50px 30px;
-    background-color: #ec5353;
+    background-color: var(--main-bg-color);
 
     -webkit-box-shadow: 0px 0px 5px 5px rgba(231, 123, 123, 0.726);
     -moz-box-shadow: 0px 0px 5px 5px rgba(177, 99, 99, 0.788);
