@@ -36,6 +36,8 @@ $router->get('/confirm-account', [AuthController::class, 'confirmAccount']);
 
 // Profile
 $router->get('/profile', [ProfileController::class, 'profile']);
+$router->post('/procesaCSV', [ProfileController::class, 'procesaCSV']);
+
 // Catalogue
 $router->get('/browse', [CatalogueController::class, 'browse']);
 $router->post('/browse', [CatalogueController::class, 'browse']);
