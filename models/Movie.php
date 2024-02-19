@@ -5,7 +5,7 @@ namespace Model;
 class Movie extends ActiveRecord
 {
     protected static $table = 'catalogue';
-    protected static $columnsDB = ['id', 'title', 'director', 'year', 'genre', 'synopsis', 'rating', 'cast', 'language', 'image_url'];
+    protected static $columnsDB = ['id', 'title', 'director', 'year', 'genre', 'synopsis', 'rating', 'cast', 'language', 'image_url', 'trailer'];
 
     protected $id;
     protected $title;
@@ -17,6 +17,7 @@ class Movie extends ActiveRecord
     protected $cast;
     protected $language;
     protected $image_url;
+    protected $trailer;
 
     public function __construct($args = [])
     {
@@ -30,6 +31,7 @@ class Movie extends ActiveRecord
         $this->cast = $args['cast'] ?? '';
         $this->language = $args['language'] ?? '';
         $this->image_url = $args['image_url'] ?? '';
+        $this->trailer = $args['trailer'] ?? '';
     }
 
     /**
@@ -222,34 +224,54 @@ class Movie extends ActiveRecord
         $this->image_url = $image_url;
     }
 
+    /**
+     * Obtiene la URL del trailer de la película.
+     *
+     * @return string
+     */
+    public function getTrailer(): string
+    {
+        return $this->trailer;
+    }
+
+    /**
+     * Establece la URL del trailer de la película.
+     *
+     * @param string $image
+     */
+    public function setTrailer(string $trailer): void
+    {
+        $this->trailer = $trailer;
+    }
+
     public function create(): array
     {
         // Sanitize the data
         $attributes = $this->sanitizeAttributes();
 
-        // Excluye el campo 'id' de la inserción
+        debug($attributes);
+        die;
+        // Excluye el campo 'id' de la inserción (ya que es autoincremental)
         unset($attributes['id']);
 
         // Inserta en la base de datos
-        $query = ' INSERT INTO ' . static::$table . ' ( ';
+        $query = 'INSERT INTO ' . static::$table . ' ( ';
         $query .= join(', ', array_keys($attributes));
-        $query .= " ) VALUES ('";
-        $query .= join("', '", array_values($attributes));
-        $query .= "') ";
+        $query .= ' ) VALUES (';
+        $query .= join(', ', array_map(function ($value) {
+            return "'$value'";
+        }, array_values($attributes)));
+        $query .= ')';
 
-
-
-        /* debug($query);
-        die; */
         // Realiza la consulta y obtiene el ID insertado
         $result = self::$db->query($query);
-        $insertedId = self::$db->insert_id;
 
         return [
             'result' => $result,
-            'id' => $insertedId
+            'id' => self::$db->insert_id
         ];
     }
+
 
 
     public function update(): bool
