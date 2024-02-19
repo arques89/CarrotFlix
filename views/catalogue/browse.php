@@ -1,4 +1,4 @@
-<section>
+<main>
     <div class="container">
         <h1>Catálogo de Películas</h1>
         <div class="row">
@@ -15,4 +15,4 @@
             <?php } ?>
         </div>
     </div>
-</section>
+</main>
