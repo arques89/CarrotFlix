@@ -7,7 +7,6 @@
 /*-----------------------------------------------*/
 body {
     margin: 0;
-    overflow: hidden;
     color: #1b262c;
 }
 
@@ -18,7 +17,6 @@ video {
 }
 footer{
     height:80px;
-    position: absolute;
     width: 100%;
     bottom: 0px;
     background-color: rgba(34,34,34,0.75);
