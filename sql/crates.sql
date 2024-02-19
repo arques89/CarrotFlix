@@ -38,15 +38,16 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 CREATE TABLE IF NOT EXISTS `catalogue` (
   `id` int NOT NULL,
-  `title` varchar(64) DEFAULT NULL,
-  `director` varchar(45) DEFAULT NULL,
+  `title` varchar(128) DEFAULT NULL,
+  `director` varchar(64) DEFAULT NULL,
   `year` varchar(45) DEFAULT NULL,
   `genre` varchar(45) DEFAULT NULL,
   `synopsis` varchar(255) DEFAULT NULL,
   `rating` varchar(45) DEFAULT NULL,
   `cast` varchar(128) DEFAULT NULL,
   `language` varchar(45) DEFAULT NULL,
-  `image` varchar(100) DEFAULT NULL,
+  `image_url` varchar(100) DEFAULT NULL,
+  `trailer` varchar(255) DEFAULT NULL,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
