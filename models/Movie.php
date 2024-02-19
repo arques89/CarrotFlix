@@ -16,7 +16,7 @@ class Movie extends ActiveRecord
     protected $rating;
     protected $cast;
     protected $language;
-    protected $image;
+    protected $image_url;
 
     public function __construct($args = [])
     {
@@ -29,7 +29,7 @@ class Movie extends ActiveRecord
         $this->rating = $args['rating'] ?? '';
         $this->cast = $args['cast'] ?? '';
         $this->language = $args['language'] ?? '';
-        $this->image = $args['image_url'] ?? '';
+        $this->image_url = $args['image_url'] ?? '';
     }
 
     /**
@@ -207,9 +207,9 @@ class Movie extends ActiveRecord
      *
      * @return string
      */
-    public function getImage(): string
+    public function getImageURL(): string
     {
-        return $this->image;
+        return $this->image_url;
     }
 
     /**
@@ -217,8 +217,56 @@ class Movie extends ActiveRecord
      *
      * @param string $image
      */
-    public function setImage(string $image): void
+    public function setImageURL(string $image_url): void
     {
-        $this->image = $image;
+        $this->image_url = $image_url;
+    }
+
+    public function create(): array
+    {
+        // Sanitize the data
+        $attributes = $this->sanitizeAttributes();
+
+        // Excluye el campo 'id' de la inserción
+        unset($attributes['id']);
+
+        // Inserta en la base de datos
+        $query = ' INSERT INTO ' . static::$table . ' ( ';
+        $query .= join(', ', array_keys($attributes));
+        $query .= " ) VALUES ('";
+        $query .= join("', '", array_values($attributes));
+        $query .= "') ";
+
+
+
+        /* debug($query);
+        die; */
+        // Realiza la consulta y obtiene el ID insertado
+        $result = self::$db->query($query);
+        $insertedId = self::$db->insert_id;
+
+        return [
+            'result' => $result,
+            'id' => $insertedId
+        ];
+    }
+
+
+    public function update(): bool
+    {
+        // Realizar lógica específica de la actualización de películas antes de llamar a la función update de ActiveRecord
+        // Puedes llamar a parent::update() para ejecutar la lógica de actualización genérica
+
+        $result = parent::update(); // Esto ejecutará la lógica de actualización genérica
+        // Puedes realizar más acciones después de la actualización, si es necesario
+
+        return $result;
+    }
+
+    public function validate(): bool
+    {
+        // Realizar validaciones necesarias
+        // Devolver true si los datos son válidos, false de lo contrario
+        return true;
     }
 }
