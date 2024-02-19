@@ -18,7 +18,7 @@ video {
 footer{
     height:80px;
     width: 100%;
-    bottom: 0px;
+    bottom: 0rem;
     background-color: rgba(34,34,34,0.75);
     color: var(--main-bg-color);
 }
