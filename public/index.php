@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\AuthController;
+use Controllers\CatalogueController;
 use Controllers\PagesController;
 use MVC\Router;
 
@@ -31,6 +32,10 @@ $router->post('/new-password', [AuthController::class, 'newPassword']);
 // Confirmación register
 $router->get('/message', [AuthController::class, 'message']);
 $router->get('/confirm-account', [AuthController::class, 'confirmAccount']);
+
+// Catalogue
+$router->get('/browse', [CatalogueController::class, 'browse']);
+$router->post('/browse', [CatalogueController::class, 'browse']);
 
 // Página 404
 $router->get('/404', [PagesController::class, 'error']);

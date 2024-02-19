@@ -183,6 +183,111 @@ class ActiveRecord
     }
 
     /**
+     * Paginate the records
+     *
+     * @param int $per_page The number of items per page
+     * @param int $offset The offset for pagination
+     * @return array The paginated records
+     */
+    public static function paginate($per_page, $offset)
+    {
+        $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC LIMIT {$per_page} OFFSET {$offset}";
+        $result = self::consultSQL($query);
+        return $result;
+    }
+
+    /**
+     * Get records ordered by a specific column and order
+     *
+     * @param string $column The column to order by
+     * @param string $order The order ('ASC' for ascending, 'DESC' for descending)
+     * @return array The ordered records
+     */
+    public static function getRecordsOrderedBy($column, $order)
+    {
+        $query = "SELECT * FROM " . static::$table . " ORDER BY {$column} {$order}";
+        $result = self::consultSQL($query);
+        return $result;
+    }
+
+    /**
+     * Get records ordered by a specific column and order with a limit
+     *
+     * @param string $column The column to order by
+     * @param string $order The order ('ASC' for ascending, 'DESC' for descending)
+     * @param int $limit The maximum number of records to retrieve
+     * @return array The ordered records with the specified limit
+     */
+    public static function getRecordsOrderedWithLimit($column, $order, $limit)
+    {
+        $query = "SELECT * FROM " . static::$table . " ORDER BY {$column} {$order} LIMIT {$limit}";
+        $result = self::consultSQL($query);
+        return $result;
+    }
+
+    /**
+     * Search with multiple WHERE options using an associative array
+     *
+     * @param array $conditions An associative array of conditions (column => value)
+     * @return array The results matching the provided conditions
+     */
+    public static function searchWithConditions(array $conditions = [])
+    {
+        $query = "SELECT * FROM " . static::$table . " WHERE ";
+        foreach ($conditions as $key => $value) {
+            if ($key === array_key_last($conditions)) {
+                $query .= " {$key} = '{$value}'";
+            } else {
+                $query .= " {$key} = '{$value}' AND ";
+            }
+        }
+        $result = self::consultSQL($query);
+        return $result;
+    }
+
+    /**
+     * Retrieve the total count of records, optionally filtered by a column value
+     *
+     * @param string $column (Optional) The column to filter by
+     * @param mixed $value (Optional) The value to match in the filtered column
+     * @return int The total count of records (filtered, if column and value provided)
+     */
+    public static function getTotalCount($column = '', $value = '')
+    {
+        $query = "SELECT COUNT(*) FROM " . static::$table;
+        if ($column) {
+            $query .= " WHERE {$column} = {$value}";
+        }
+        $result = self::$db->query($query);
+        $total = $result->fetch_array();
+
+        return array_shift($total);
+    }
+
+    /**
+     * Retrieve the total count of records using an array for WHERE conditions
+     *
+     * @param array $conditions An associative array of conditions (column => value)
+     * @return int The total count of records matching the provided conditions
+     */
+    public static function getTotalCountWithArrayConditions($conditions = [])
+    {
+        $query = "SELECT COUNT(*) FROM " . static::$table . " WHERE ";
+        foreach ($conditions as $key => $value) {
+            if ($key === array_key_last($conditions)) {
+                $query .= " {$key} = '{$value}' ";
+            } else {
+                $query .= " {$key} = '{$value}' AND ";
+            }
+        }
+        $result = self::$db->query($query);
+        $total = $result->fetch_array();
+        return array_shift($total);
+    }
+
+
+
+    /**
      * Executes an SQL query based on a specific column equality criterion.
      *
      * @param string $column The name of the column in the table.
