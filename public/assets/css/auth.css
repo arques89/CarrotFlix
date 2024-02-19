@@ -70,19 +70,29 @@ h1 {
 }
 .offcanvas{
     background-color: rgba(34,34,34,0.35);
+    opacity: 0.7;
 
 }
+button.btn-close{
+    background-color: var(--main-bg-color);
+    color: var(--main-bg-color)
+}
 .offcanvas-title{
+    color: var(--main-bg-color);
     margin: auto;
 }
+.dashboard__submit--logout{
+    background-color: var(--main-bg-color);
+    opacity: 0.6;
+    border: none;
+
+    font-weight: bold;
+}
 .offcanvas-header {
-    color: white;
+    background-color: rgba(34,34,34,0.75);
 }
 .offcanvas-body{
     background-color: rgba(34,34,34,0.75);
-}
-.btn-close{
-    background-color: var(--main-bg-color);
 }
 .header__enlace{
     color: var(--main-bg-color);
@@ -351,3 +361,8 @@ h1 {
 label {
     color: #bbe1fa;
 }
+
+/*--------------------*/
+/* NAVEGADOR WEB PAG  */
+/*--------------------*/
+
