@@ -58,7 +58,12 @@
                 <a href="/login" class="header__enlace">Login</a>
             <?php } ?>
             <?php if (!empty($_SESSION)) { ?>
-                <form method="POST" action="/logout" class="dashboard__form">
+
+                    <a href="/profile" class="header__enlace" > <?php echo $_SESSION['name'] ?>  Profile</a>
+
+                <?php } ?>
+            <?php if (!empty($_SESSION)) { ?>
+                <form method="POST" action="/logout" class="dashboard__form mt-3">
                     <input type="submit" value="Cerrar Sesión" class="dashboard__submit--logout">
                 </form>
                 <?php } ?>

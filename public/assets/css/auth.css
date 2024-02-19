@@ -99,6 +99,9 @@ button.btn-close{
     text-decoration: none;
     font-size: 20px;
 }
+.header__enlace:hover {
+    color: var(--main-bg-color);
+  }
 .nav-item{
     margin: auto;
 }
@@ -111,7 +114,7 @@ button.btn-close{
 }
 #contenedor {
     position: absolute;
-    top: 45%; /* Ajusta la posición vertical según tus necesidades */
+    top: 40%; /* Ajusta la posición vertical según tus necesidades */
     left: 5%;
     opacity: 0.7;
 
@@ -132,12 +135,12 @@ button.btn-close{
     font-size: 250%;
     color: #bbe1fa;
     text-align: center;
-    margin-bottom: 20px;
 }
 
 #login {
     width: 100%;
     padding: 50px 30px;
+    margin-bottom: 500px;
     background-color: var(--main-bg-color);
 
     -webkit-box-shadow: 0px 0px 5px 5px rgba(231, 123, 123, 0.726);
@@ -238,7 +241,7 @@ button.btn-close{
 
 #contenedor_register {
     position: absolute;
-    top: 18%; /* Ajusta la posición vertical según tus necesidades */
+    top: 15%; /* Ajusta la posición vertical según tus necesidades */
     left: 5%;
     opacity: 0.7;
 
