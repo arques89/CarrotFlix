@@ -10,6 +10,10 @@ class ProfileController
     public static function profile(Router $router)
     {
         session_start();
+        if (!$_SESSION['id']) {
+            header('Location: /');
+        }
+
         $userId = $_SESSION['id'];
         $user = User::where('id', $userId);
 

@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Controllers;
 
@@ -14,6 +14,10 @@ final class CatalogueController
         $movieObj = new Movie();
         $movies = $movieObj->all();
         $alerts = [];
+
+        if (!$_SESSION['id']) {
+            header('Location: /');
+        }
 
         // Render a la vista
         $router->render('catalogue/browse', [
