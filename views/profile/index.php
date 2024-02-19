@@ -33,6 +33,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="text-success text-center bold"><?php echo ($alerts ? $alerts : ''); ?></div>
             </div>
         </div>
     </div>

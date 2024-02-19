@@ -53,7 +53,16 @@ class ProfileController
                     $result = $newMovie->save();
 
                     if ($result['result']) {
-                        echo "Película '" . $data[0] . "' insertada correctamente. ID: " . $result['id'] . "<br>";
+
+                        session_start();
+                        $userId = $_SESSION['id'];
+                        $user = User::where('id', $userId);
+
+                        $router->render('profile/index', [
+                            'title' => 'Perfil de usuario',
+                            'user' => $user,
+                            'alerts' => 'Registros insertados correctamente.'
+                        ]);
                     } else {
                         echo "Error al insertar la película '" . $data[0] . "'. Datos no válidos.<br>";
                     }
