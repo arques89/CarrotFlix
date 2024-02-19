@@ -15,10 +15,7 @@ final class CatalogueController
         $movies = $movieObj->all();
         $alerts = [];
 
-        if (!$_SESSION['id']) {
-            header('Location: /');
-        }
-
+        // TODO : Proteger ruta
         // Render a la vista
         $router->render('catalogue/browse', [
             'title' => 'Catálogo',
