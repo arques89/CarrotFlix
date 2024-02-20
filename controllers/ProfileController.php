@@ -34,7 +34,7 @@ class ProfileController
                 $file = fopen($csvFile, 'r');
                 while (($data = fgetcsv($file, 1000, ';')) !== FALSE) {
 
-                    $newMovie = new Movie([
+                    $movie = new Movie([
                         'title' => $data[0],
                         'director' => $data[1],
                         'year' => $data[2],
@@ -44,9 +44,10 @@ class ProfileController
                         'cast' => $data[6],
                         'language' => $data[7],
                         'image_url' => $data[8],
+                        'trailer' => $data[9],
                     ]);
 
-                    $result = $newMovie->save();
+                    $result = $movie->save();
                 }
                 fclose($file);
 
