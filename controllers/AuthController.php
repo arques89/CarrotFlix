@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Controllers;
 
@@ -37,7 +37,7 @@ final class AuthController
 
                         // Redirección
                         if ($user) {
-                            header('Location: /');
+                            header('Location: /profile');
                         }
                         /* if ($usuario->admin) {
                     header('Location: /');

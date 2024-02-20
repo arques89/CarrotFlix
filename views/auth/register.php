@@ -5,9 +5,9 @@
         Tu navegador no soporta el elemento de video.
     </video>
 
-    <div id="contenedor_register">
-        <div id="central">
-            <div id="register">
+    <div class="contenedor">
+        <div class="central">
+            <div class="red-card">
                 <?php
                 require_once __DIR__ . '../../templates/alerts.php';
                 ?>
@@ -47,9 +47,9 @@
                     <a href="/reset-password">¿Perdiste tu contraseña?</a>
                     <a href="/login">¿Tienes Cuenta? Inicia Sesión</a>
                 </div>
-            </div>
-            <div class="inferior">
-                <a href="/">Volver</a>
+                <div class="inferior">
+                    <a href="/">Volver</a>
+                </div>
             </div>
         </div>
     </div>

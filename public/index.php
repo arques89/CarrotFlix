@@ -2,10 +2,11 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
-use Controllers\AuthController;
-use Controllers\CatalogueController;
-use Controllers\PagesController;
 use MVC\Router;
+use Controllers\AuthController;
+use Controllers\PagesController;
+use Controllers\ProfileController;
+use Controllers\CatalogueController;
 
 $router = new Router();
 
@@ -32,6 +33,10 @@ $router->post('/new-password', [AuthController::class, 'newPassword']);
 // Confirmación register
 $router->get('/message', [AuthController::class, 'message']);
 $router->get('/confirm-account', [AuthController::class, 'confirmAccount']);
+
+// Profile
+$router->get('/profile', [ProfileController::class, 'profile']);
+$router->post('/procesaCSV', [ProfileController::class, 'procesaCSV']);
 
 // Catalogue
 $router->get('/browse', [CatalogueController::class, 'browse']);

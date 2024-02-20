@@ -5,9 +5,9 @@
         Tu navegador no soporta el elemento de video.
     </video>
 
-    <div id="contenedor">
-        <div id="central">
-            <div id="login">
+    <div class="contenedor">
+        <div class="central">
+            <div class="red-card">
                 <?php
                     require_once __DIR__ . '/../templates/alerts.php';
                 ?>
@@ -24,6 +24,9 @@
                 <div class="pie-form">
                     <a href="/login">¿Tienes Cuenta? Inicia sesión</a>
                     <a href="/register">¿No tienes Cuenta? Registrate</a>
+                </div>
+                <div class="inferior">
+                    <a href="/">Volver</a>
                 </div>
             </div>
         </div>

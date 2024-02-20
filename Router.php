@@ -37,13 +37,16 @@ class Router
 
     public function render($view, $datos = [])
     {
+
         foreach ($datos as $key => $value) {
+            // Sobre $ significa variable de variable
             $$key = $value;
         }
 
-        ob_start();
+        ob_start(); // Iniciar almacenamiento en memoria de la vista
 
-        include_once __DIR__ . "/views/$view.php";
-        include_once __DIR__ . '/views/layout.php';
+        include __DIR__ . "/views/$view.php"; // Limpia el buffer
+        $contenido = ob_get_clean();
+        include __DIR__ . "/views/layout.php";
     }
 }

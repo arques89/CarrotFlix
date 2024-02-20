@@ -24,9 +24,6 @@
     </div>
 
     <p class="footer__copyright">
-        Carrot Flix
-        <span class="footer__copyright--regular">
-            - Todos los derechos reservados <?php echo date('Y'); ?>
-        </span>
+        Carrot Flix - Todos los derechos reservados <?php echo date('Y'); ?>
     </p>
 </footer>

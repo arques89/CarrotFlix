@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Controllers;
 
@@ -15,6 +15,7 @@ final class CatalogueController
         $movies = $movieObj->all();
         $alerts = [];
 
+        // TODO : Proteger ruta
         // Render a la vista
         $router->render('catalogue/browse', [
             'title' => 'Catálogo',
