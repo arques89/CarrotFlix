@@ -1,13 +1,12 @@
-<main>
     <video autoplay muted loop>
         <!-- Reemplaza 'video.mp4' con la ruta de tu video -->
         <source src="../assets/img/movie.mp4" type="video/mp4">
         Tu navegador no soporta el elemento de video.
     </video>
 
-    <div id="contenedor">
-        <div id="central">
-            <div id="login">
+    <div class="contenedor">
+        <div class="central">
+            <div class="red-card">
                 <div class="title">
                     Bienvenido
                 </div>
@@ -31,10 +30,9 @@
                     <a href="/reset-password">¿Perdiste tu contraseña?</a>
                     <a href="/register">¿No tienes Cuenta? Registrate</a>
                 </div>
-            </div>
-            <div class="inferior">
-                <a href="/">Volver</a>
+                <div class="inferior">
+                    <a href="/">Volver</a>
+                </div>
             </div>
         </div>
     </div>
-</main>
