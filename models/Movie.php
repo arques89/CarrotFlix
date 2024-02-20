@@ -249,21 +249,14 @@ class Movie extends ActiveRecord
         // Sanitize the data
         $attributes = $this->sanitizeAttributes();
 
-        debug($attributes);
-        die;
-        // Excluye el campo 'id' de la inserción (ya que es autoincremental)
-        unset($attributes['id']);
-
-        // Inserta en la base de datos
-        $query = 'INSERT INTO ' . static::$table . ' ( ';
+        // Insert into the database
+        $query = ' INSERT INTO ' . static::$table . ' ( ';
         $query .= join(', ', array_keys($attributes));
-        $query .= ' ) VALUES (';
-        $query .= join(', ', array_map(function ($value) {
-            return "'$value'";
-        }, array_values($attributes)));
-        $query .= ')';
+        $query .= " ) VALUES (' ";
+        $query .= join("', '", array_values($attributes));
+        $query .= " ') ";
 
-        // Realiza la consulta y obtiene el ID insertado
+        // Query result
         $result = self::$db->query($query);
 
         return [
@@ -271,8 +264,6 @@ class Movie extends ActiveRecord
             'id' => self::$db->insert_id
         ];
     }
-
-
 
     public function update(): bool
     {

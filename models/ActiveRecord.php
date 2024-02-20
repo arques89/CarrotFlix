@@ -179,7 +179,7 @@ class ActiveRecord
         $query = 'SELECT * FROM ' . static::$table . " WHERE id = {$id}";
         $result = self::consultSQL($query);
 
-        return array_shift($result);
+        return $result;
     }
 
     /**
