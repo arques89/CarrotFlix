@@ -265,9 +265,6 @@ class Movie extends ActiveRecord
         ];
     }
 
-
-
-
     public function update(): bool
     {
         // Realizar lógica específica de la actualización de películas antes de llamar a la función update de ActiveRecord
