@@ -61,6 +61,10 @@ class ProfileController
                         'user' => $user,
                         'alerts' => 'Registros insertados correctamente.'
                     ]);
+                    // TODO : Mejorar esta redirección ya que es un poco ñapa
+                    header('Location: /profile');
+                    echo '<script>window.location.href = "/profile";</script>';
+                    exit();
                 } else {
                     echo "Error al insertar la película '" . $data[0] . "'. Datos no válidos.<br>";
                 }
