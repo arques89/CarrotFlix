@@ -1,9 +1,9 @@
 <main>
     <div class="container mt-5">
         <h1>Catálogo de Películas</h1>
-        <div class="row">
+        <div class="row gap-4">
             <?php foreach ($movies as $movie) { ?>
-                <div class="card mt-5 mb-5" style="width: 18rem;">
+                <div class="card mt-5" style="width: 18rem;">
                     <a href="#" data-toggle="modal" data-target="#myModal<?php echo $movie->getId(); ?>">
                         <img class="card-img-top mt-2" srcset="media/<?php echo $movie->getImageURL(); ?>" alt="<?php echo $movie->getTitle(); ?>">
                     </a>
