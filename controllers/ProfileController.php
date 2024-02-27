@@ -52,22 +52,20 @@ class ProfileController
                 fclose($file);
 
                 if ($result['result']) {
-                    session_start();
-                    $userId = $_SESSION['id'];
-                    $user = User::where('id', $userId);
-
-                    $router->render('profile/index', [
-                        'title' => 'Perfil de usuario',
-                        'user' => $user,
-                        'alerts' => 'Registros insertados correctamente.'
-                    ]);
-                    // TODO : Mejorar esta redirección ya que es un poco ñapa
-                    header('Location: /profile');
-                    echo '<script>window.location.href = "/profile";</script>';
-                    exit();
+                    $response = [
+                        'success' => true,
+                        'message' => 'Registros insertados correctamente.',
+                    ];
                 } else {
-                    echo "Error al insertar la película '" . $data[0] . "'. Datos no válidos.<br>";
+                    $response = [
+                        'success' => false,
+                        'message' => 'Error al insertar la película. Datos no válidos.',
+                    ];
                 }
+
+                header('Content-Type: application/json');
+                echo json_encode($response);
+                exit();
             } else {
                 echo "Error al cargar el archivo CSV.";
             }

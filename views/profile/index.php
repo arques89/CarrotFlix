@@ -18,10 +18,10 @@
                                     <li class="list-group-item text-secondary">Correo Electrónico: <?php echo $user->getEmail() ?></li>
                                     <?php if ($user->getIsAdmin()) { ?>
                                         <li class="list-group-item">
-                                            <form action="/procesaCSV" method="post" enctype="multipart/form-data">
+                                            <form action="/procesaCSV" method="post" enctype="multipart/form-data" id="csvForm">
                                                 <label for="csvFile">Selecciona un archivo CSV:</label>
                                                 <input type="file" name="csvFile" id="csvFile" accept=".csv" required>
-                                                <button type="submit" class="btn btn-primary mt-3">Cargar fichero CSV</button>
+                                                <button type="button" class="btn btn-primary mt-3" id="submitBtn">Cargar fichero CSV</button>
                                             </form>
                                         </li>
                                     <?php } ?>
@@ -38,3 +38,49 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('csvForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        submitBtn.addEventListener('click', async function() {
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const result = await response.json(); // Suponiendo que el backend devuelve un JSON
+
+                    if (result.success) {
+                        Swal.fire({
+                            title: 'Éxito',
+                            text: 'Registros insertados correctamente.',
+                            icon: 'success',
+                        }).then(() => {
+                            window.location.href = "/profile";
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Error al insertar la película. Datos no válidos.',
+                            icon: 'error',
+                        });
+                    }
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Error al cargar el archivo CSV.',
+                        icon: 'error',
+                    });
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+</script>
