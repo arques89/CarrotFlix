@@ -1,14 +1,17 @@
+<?php
+header('Refresh: 5; url=./login');
+
+// Tu código HTML actual
+?>
 <main class="auth">
-    <h2 class="auth__heading"><?php echo $title; ?></h2>
-    <p class="auth__texto">Tu cuenta de CarrotFlix</p>
-
-    <?php
-    require_once __DIR__ . '../../templates/alerts.php';
-    ?>
-
-    <?php if (isset($alerts['exito'])) { ?>
-        <div class="acciones--centrar">
-            <a href="/login" class="formulario__submit">Iniciar sesión</a>
+    <div class="message">
+        <div>
+            <p class="auth__texto">
+                <h2>Usuario Confirmado.</h2> 
+            </p>
+            <img src="../assets/img/logo-check.avif" alt="">
+            <h3>Serás redirigido a la página de Login. Gracias por verificar tu usuario.</h3>
         </div>
-    <?php } ?>
+    </div>
 </main>
+

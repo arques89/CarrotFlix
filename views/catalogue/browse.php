@@ -1,4 +1,4 @@
-<main>
+<mains>
     <div class="container mt-5">
         <h1>Catálogo de Películas</h1>
         <div class="row gap-4">

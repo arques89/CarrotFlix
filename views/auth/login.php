@@ -1,10 +1,9 @@
+<main>
     <video autoplay muted loop>
-        <!-- Reemplaza 'video.mp4' con la ruta de tu video -->
         <source src="../assets/img/movie.mp4" type="video/mp4">
-        Tu navegador no soporta el elemento de video.
     </video>
-
     <div class="contenedor">
+
         <div class="central">
             <div class="red-card">
                 <div class="title">
@@ -36,3 +35,4 @@
             </div>
         </div>
     </div>
+</main>
