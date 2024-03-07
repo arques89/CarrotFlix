@@ -1,4 +1,4 @@
-<main>
+<mains>
     <div class="container mt-5">
         <h1>Catálogo de Películas</h1>
         <div class="row">
@@ -15,4 +15,4 @@
             <?php } ?>
         </div>
     </div>
-</main>
+</mains>

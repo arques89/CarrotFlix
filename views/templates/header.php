@@ -2,7 +2,7 @@
 <nav class="navbar navbar fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">CarrotFlix</a>
-
+    
       <?php if (!empty($_SESSION)) { ?>
       <?php if (isAuth()) { ?>  
         <a id="browse" class="navbar-brand" href="/browse">Browse</a>
